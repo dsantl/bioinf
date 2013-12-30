@@ -1,0 +1,15 @@
+#!/bin/bash
+
+nj_exec=$1
+fasta_file=$2
+
+./alignment.py $fasta_file >alg.out
+time $nj_exec <alg.out >nj.out
+./generate_graph.py <nj.out
+
+dot -Tpng graph.dot -o graph.png
+eog graph.png
+
+rm output.tmp #file for tunneling from alignement to generate_graph
+rm alg.out #output of alignament
+rm nj.out #output of nj algorithm
