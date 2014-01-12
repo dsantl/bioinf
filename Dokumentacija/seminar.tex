@@ -65,6 +65,56 @@
 
 \chapter{Opis algoritma}
 
+Algoritam \emph{Neighbor joining} služi za izgradnju filogenetskog stabla. Ulaz algoritma su evolucijske udaljenosti (matrica udaljenosti čvorova). Izlaz algoritma je stablo s težinskim bridovima. Cilj algoritma izgraditi je minimalno razapinjajuće filogenetsko stablo. Algoritam nužno ne pronalazi takvo stablo ali rješenja su često minimalna razapinjajuća filogenetska stabla ili blizu toga \cite{saitou}. Glavni razlog je smanjenje vremenske složenosti, jer u praksi nije izvedivo ispitivanje svih mogućih stabala. Stablo se gradi od dna prema vrhu. Algoritam je pohlepan jer za jednom sparene čvorove ne ispituje točnost tog koraka.
+
+Algoritam se sastoji od dva dijela: uparivanje čvorova i završni korak. Algoritam kreće od matrice udaljenosti nad kojom zaključuje koja dva čvora je potrebno upariti. Kada su poznata dva čvora koja se trebaju upariti, stvara se novi čvor koji se spaja s dva odabrana. Dva odabrana čvora se brišu iz matrice udaljenosti, a novi čvor se ubaci u matricu udaljenosti. Taj postupak se izvršava $N-3$ puta, gdje je $N$ početni broj čvorova. Završni korak uzima zadnja tri čvora koja su ostala u matrici udaljenosti, stvara novi čvor i spaja novi čvor s tri zadnja čvora u matrici udaljenosti. Formalno algoritam izgleda ovako:
+\begin{enumerate}
+	\item \textbf{Ulaz}: matrica udaljenosti
+	\item Na temelju trenutne matrice udaljenosti izračunaj matricu \textbf{Q}
+	\item U matrici \textbf{Q} pronađi najmanju vrijednost $Q(i,j)$ i pripadajuće čvorove $(i,j)$.
+	\item Stvori novi čvor $w$ i dva nova brida: $(w,i)$ i $(w,j)$ te izračunaj udaljenosti $d(w,i)$ i $d(w,j)$ i zapiši ih na pripadajući brid.
+	\item Iz matrice udaljenosti izbriši čvorove $i$ i $j$, te dodaj u matricu novi čvor $w$ - potrebno je izračunati udaljenosti do novoga čvora $w$
+	\item Ako postoji više od 3 čvora u matrici udaljenosti skoči na korak 2.
+	\item Stvori novi čvor $w$ i napravi 3 brida s preostalim čvorovima u matrici udaljenosti te izračunaj i pridruži vrijednost bridovima 
+\end{enumerate}
+
+\section{Matrica Q}
+Matrica \textbf{Q} pomoćna je matrica iz koje se određuje par čvorova koji će biti susjedni. Matrica \textbf{Q} kao kriterij uzima osim udaljenosti čvorova $i$ i $j$ utjecaj njihovih susjeda. Dokaz da je najmanja vrijednost matrice \textbf{Q} pripada susjednim čvorovima dan je u \cite{saitou}. Matrica \textbf{Q} izračunava se na sljedeći način:
+
+\begin{equation}
+	Q(i,j) = (r-1) d(i,j) - \sum_{k=1}^{r}d(i,k) - \sum_{k=1}^{r}d(j,k)
+\end{equation}
+, gdje su $i$, $j$ indeksi čvorova, r je trenutni broj čvorova u matrici udaljenosti. Oznake $d(i,j)$, $d(i,k)$ i $d(j,k)$ predstavljaju vrijednosti u matrici udaljenosti. Čvorovi $i$ i $j$ moraju biti različiti.
+
+\section{Računanje vrijednosti bridova}
+
+Nakon što se stvore novi bridovi u stablu potrebno je odrediti njihovu vrijednost. U svakom koraku uparivanja stvore se dva nova brida. U završnom koraku stvore se tri nova brida.
+
+Nakon što se čvorovi $i$ i $j$ proglase susjednima stvara se novi čvor $w$. Potrebno je odrediti udaljenosti $d(i, w)$ i $d(j,w)$. Udaljenosti se određuju prema formulama:
+
+\begin{equation}
+d(i,w) = \frac{1}{2}d(i,j)+\frac{1}{2(r-2)} \left [ \sum_{k=1}^{r}d(i,k) - \sum_{k=1}^{r}d(j,k) \right ]
+\end{equation}
+, gdje je $r$ trenutni broj čvorova u matrici udaljenosti.
+
+Kako vrijedi $d(i,j)=d(i,w)+d(j,w)$, iz toga sljedi:
+\begin{equation}
+d(j,w) = d(i,j) - d(i,w)
+\end{equation}
+
+\section{Računanje udaljenosti do novog čvora}
+
+Pri ubacivanju novog čvora u matricu udaljenosti potrebno je izračunati udaljenost od svih starih čvorova do novog čvora $w$. Udaljenost se računa prema formuli: 
+
+\begin{equation}
+d(k,w) = \frac{1}{2} \left [ d(i,k) + d(j,k) - d(i,j) \right ]
+\end{equation}
+, gdje je $k$ bilo koji stari čvor u matrici udaljenosti. Čvorovi $i$ i $j$ su upravo spojeni čvorovi. 
+
+\section{Složenost algoritma}
+
+Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova u početnoj matrici udaljenosti. U svakom koraku potrebno je izračunati matricu \textbf{Q} koja je dimenzije $r\times r$, gdje je $r$ trenutni broj čvorova. Ako se predprocesiraju sume u prije navedenim formulama u $O(N)$ vremenu, tada za računanje matrice \textbf{Q} potrebno $O(N^2)$ vremena. Zbog toga je ukupna vremenska složenost algritma $O(N^3)$. Memorijska složenost je $O(N^2)$ jer se pamti matrica udaljenosti.
+
 \chapter{Primjer izvođenja}
 
 \chapter{Testiranje i usporedbe}
