@@ -6,7 +6,7 @@ SRCS = dm.cc nj.cc pt.cc
 OBJS = $(SRCS:.cc=.o)
 
 #project name
-MAIN = LAB
+MAIN = ../Bin/LAB
 
 all:	$(MAIN)
 
