@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <malloc.h>
 #include <string.h>
+
 
 #include "structure.h"
 #include "init.h"
@@ -58,7 +60,7 @@ void nj_algorithm(struct node **node_array,
 
 int main(void)
 { 
-	unsigned int iterator, i, j; //helper variables
+	unsigned int iterator, i, j, dummy_a, dummy_b; //helper variables
 	
 	double distance; //helper variable for distance input
 	
@@ -69,7 +71,11 @@ int main(void)
 	unsigned int number_of_OUT; //number of OUTs nodes
 	unsigned int number_of_pair; //number of pairs
 
-	scanf("%u", &number_of_OUT);
+	if ( scanf("%u", &number_of_OUT) != 1 )
+	{
+		fprintf(stderr, "Input error!");
+		exit(1);
+	}
 
 	//init
 	init_int_generator(number_of_OUT);
@@ -84,7 +90,18 @@ int main(void)
 	{
 		for(j = i+1 ; j < number_of_OUT ; ++j)
 		{
-			scanf("%*d %*d %lf", &distance);
+			if ( scanf("%u %u %lf", &dummy_a, &dummy_b, &distance) != 3 )
+			{
+				fprintf(stderr, "Input error!");
+				exit(1);
+			}
+
+			if ( dummy_a != i || dummy_b != j)
+			{
+				fprintf(stderr, "Input error!");
+				exit(1);	
+			}
+
 			distance_matrix[iterator] = create_pair(node_array, i, j, distance);		
 			iterator += 1;
 		}

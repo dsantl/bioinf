@@ -1,8 +1,9 @@
 bioinf
 ======
 
-Neighbor joining infrastructure
+Neighbor joining project
 
+Infra:
 
 Main script is nj_process.
 
@@ -12,3 +13,7 @@ Other:
 
 ./alignament.py input_fasta_file - to stdout print distance matrix (bridges)
 ./generate_graph.py - to stdin graph in bridge format
+
+
+Code: source codes and bin files
+Test: Infrastructure for test

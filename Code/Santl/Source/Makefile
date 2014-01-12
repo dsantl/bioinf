@@ -6,14 +6,12 @@ CC = gcc
 CFLAGS = -Wall -g -O2
 LDFLAGS =
 OBJECTS = ${SOURCES:.c=.o}
+BIN = ../Bin/
 
 $(PROJECT): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(PROJECT)
+	$(CC) $(OBJECTS) -o ${BIN}$(PROJECT)
 
 $(OBJECTS): $(HEADERS)
 
-fast:
-	$(CC) $(OBJECTS) -o $(PROJECT)
-
 clean:
-	-rm -f $(PROJECT) $(OBJECTS) *.core *.o
+	-rm -f ${BIN}$(PROJECT) $(OBJECTS) *.core *.o
