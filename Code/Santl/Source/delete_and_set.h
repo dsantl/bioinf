@@ -24,7 +24,9 @@ struct node** add_new_node(struct node **node_array,
 						   double *distance_hash,
 						   struct node *left,
 						   struct node *right,
-						   unsigned int old_size);
+						   unsigned int old_size,
+						   double sum1,
+						   double sum2);
 
 //Add new pair in distance matrix
 struct pair **add_new_pairs(struct node **node_array, 

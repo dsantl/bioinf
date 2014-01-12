@@ -1,5 +1,11 @@
 #ifndef FIND_BEST_PAIR
 #define FIND_BEST_PAIR
+
+//Update distance sum from one node to all others
+struct node** refresh_distance_sum(struct node** node_array, 
+								   double *distance_hash, 
+								   unsigned int N);
+
 //Update hash for pair distance
 double *compute_distance_hash(struct pair **distance_matrix, 
 							  double *distance_hash, 
@@ -7,7 +13,8 @@ double *compute_distance_hash(struct pair **distance_matrix,
 							  unsigned int pair_size);
 
 //Compute Q value for pairs
-struct pair* compute_Q_for_pair(struct pair* q_pair, 
+struct pair* compute_Q_for_pair(struct node **node_array,
+								struct pair* q_pair, 
 								double *distance_hash, 
 								unsigned int node_size);
 

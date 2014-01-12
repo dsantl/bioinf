@@ -12,14 +12,20 @@
 #include "print_solution.h"
 #include "free_memory.h"
 
-//Neighbor joining algorithm
+/* Neighbor joining algorithm
+	*param node_array - array who contain all nodes
+	*param distance_matrix - array who contain all distances
+	*param node_size - how many nodes are in array
+	*param pair_size - how many distances are in array
+	*param ROOT - this is structure for last step of algorithm
+*/ 
 void nj_algorithm(struct node **node_array, 
 				  struct pair **distance_matrix, 
 				  unsigned int node_size, 
 				  unsigned int pair_size,
 				  struct nj_root *ROOT)
 {
-	//Helper array for hash
+	//Helper array for hash, we can get d(i,j) in O(1) and memory is O(N)
 	double *distance_hash = (double*) malloc(sizeof(double) * pair_size);
 	
 	//When we have only 3 nodes then is algorithm over
@@ -32,6 +38,9 @@ void nj_algorithm(struct node **node_array,
 											  distance_hash, 
 											  node_size,
 											  pair_size);
+
+		//compute distances from one node to all
+		node_array = refresh_distance_sum(node_array, distance_hash, node_size);
 
 		//compute Q values for pairs
 		distance_matrix = compute_Q_function(node_array, 
@@ -77,6 +86,12 @@ int main(void)
 		exit(1);
 	}
 
+	if ( number_of_OUT < 3 )
+	{
+		fprintf(stderr, "Minimal number of OUTs is 3!");
+		exit(1);	
+	}
+
 	//init
 	init_int_generator(number_of_OUT);
 	number_of_pair = number_of_OUT*(number_of_OUT-1)/2;
@@ -112,7 +127,7 @@ int main(void)
 				 number_of_OUT, number_of_pair, &ROOT);
 
 	//print solution
-	print_solution(node_array, distance_matrix, ROOT);
+	print_solution(node_array, ROOT);
 
 	free_memory(node_array, distance_matrix, number_of_pair);
 

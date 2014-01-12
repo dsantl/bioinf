@@ -5,7 +5,6 @@
 void rek_print_solution(struct node *root);
 
 //Print solution
-void print_solution(struct node **node_array, struct pair** distance_matrix,
-					struct nj_root ROOT);
+void print_solution(struct node **node_array, struct nj_root ROOT);
 
 #endif

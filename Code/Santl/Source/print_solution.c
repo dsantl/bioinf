@@ -2,7 +2,9 @@
 #include "structure.h"
 #include "util.h"
 
-//Print tree recursive tree structure
+/* Print tree recursive tree structure
+	*param root - node who doesn't have parent
+*/
 void rek_print_solution(struct node *root)
 {
 	if ( root->left )
@@ -20,9 +22,11 @@ void rek_print_solution(struct node *root)
 	}
 }
 
-//Print solution
-void print_solution(struct node **node_array, struct pair** distance_matrix,
-					struct nj_root ROOT)
+/* Print solution
+	*param node_array - array of nodes
+	*param ROOT - last three nodes in algorithm
+*/
+void print_solution(struct node **node_array, struct nj_root ROOT)
 {
 	
 	unsigned int master_node = ROOT.master_node;

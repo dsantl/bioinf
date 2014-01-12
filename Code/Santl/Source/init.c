@@ -2,7 +2,10 @@
 
 #include "structure.h"
 
-//Function for create new node, original index is given
+/* Function for create new node, original index is given
+	*param index - id of node
+	*return new node
+*/
 struct node* create_OUT_node(unsigned int index)
 {	
 	struct node* ret = (struct node*) malloc(sizeof(struct node));
@@ -15,7 +18,10 @@ struct node* create_OUT_node(unsigned int index)
 	return ret;
 }
 
-//Function for init node array, create array of size nodes
+/* Function for init node array, create array of size nodes
+	*param size - number of nodes
+	*return new node array
+*/
 struct node** init_node_array(unsigned int size)
 {	
 	int i;
@@ -26,13 +32,22 @@ struct node** init_node_array(unsigned int size)
 	return ret; 
 }
 
-//Function for init distance array of pairs
+/* Function for init distance array of pairs
+	*param size - size of distances
+	return distance matrix array
+*/
 struct pair** init_distance_matrix(unsigned int size)
 {
 	return (struct pair**) malloc(sizeof(struct pair*) * size);
 }
 
-//Function for create pair, i and j are indices in node_array
+/* Function for create pair, i and j are indices in node_array
+	*param node_array - array who contain all nodes
+	*param i - index of first node
+	*param j - index of second node
+	*param distance - double value of distance
+	*return new distance (pair)
+*/
 struct pair* create_pair(struct node** node_array, 
 						 unsigned int i, 
 						 unsigned int j, 

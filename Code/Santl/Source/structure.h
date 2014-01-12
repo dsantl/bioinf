@@ -7,6 +7,7 @@ struct node
 	unsigned int node_array_index; //current index in array
 	unsigned int index; //static index (ID)
 
+	double distance_sum; //sum of distances to all other nodes
 	double left_distance; //distance from node to left child
 	double right_distance; //distance from node to right child
 	struct node *left; //pointer to left child

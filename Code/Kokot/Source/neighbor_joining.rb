@@ -45,7 +45,7 @@ end
 
 
 # returns sum of elements in i-th row 
-def sum(matrix, i)
+def get_sum(matrix, i)
   sum_ = 0
   for k in 1...matrix.length
     sum_ +=  matrix[i][k]
@@ -60,10 +60,14 @@ end
 # returns Q matrix
 def calc_matrix_q(distance_matrix)
   m = Marshal.load(Marshal.dump(distance_matrix))
+  sums = Array.new( distance_matrix.length ) { 0 }
+  for i in 1...sums.length
+    sums[i] = get_sum(distance_matrix, i)
+  end 
   const = $r - 2
   for i in 1...distance_matrix.length
     for j in i+1...distance_matrix.length
-      m[i][j] = const * distance_matrix[i][j] - sum(distance_matrix, i) - sum(distance_matrix, j)
+      m[i][j] = const * distance_matrix[i][j] - sums[i] - sums[j]
       m[j][i] = m[i][j]
     end
   end
@@ -94,7 +98,7 @@ end
 # returns distance values for 
 def distance_members(matrix, i, j)
   distances = []
-  distances[0] = matrix[i][j] / 2.to_f + (sum(matrix, i) - sum(matrix, j)) / (2.to_f * ($r - 2))
+  distances[0] = matrix[i][j] / 2.to_f + (get_sum(matrix, i) - get_sum(matrix, j)) / (2.to_f * ($r - 2))
   distances[1] = matrix[i][j] - distances[0]
   distances
 end
@@ -171,7 +175,7 @@ end
 h = distance_matrix
 
 first = ( h[1][2] + h[1][3] - h[2][3] ) / 2.to_f
-second = ( h[2][1] + h[2][3] - h[1][2]) / 2.to_f
+second = ( h[2][1] + h[2][3] - h[1][3]) / 2.to_f
 third = ( h[2][3] + h[1][3] - h[1][2] ) / 2.to_f
 
 tree.push("#{h[0][1]} #{$n} #{first}")
