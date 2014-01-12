@@ -2,30 +2,30 @@
 
 import sys
 import copy
+import time
 from collections import defaultdict
+
+start_time = time.time()
 
 spremiste = defaultdict(dict)
 
-#fname = str(sys.argv[1])
+fname = str(sys.argv[1])
 
-#with open(fname, 'r') as f:
-
-f = sys.stdin
-
-matUdalj = []
-for line in f:
-	line = line.split()
-	if line:
-		if len(line) == 1:
-			# prva linija, broj cvorova, inicijilaziraj matricu
-			# nulama
-			r = int(line[0]);
-			
-			matUdalj = [[0]*r for i in range(r)] 
-		else:
-			# linije s udaljenostima
-			matUdalj[int(line[0])][int(line[1])] = float(line[2])
-			matUdalj[int(line[1])][int(line[0])] = float(line[2])	
+with open(fname, 'r') as f:
+	matUdalj = []
+	for line in f:
+		line = line.split()
+		if line:
+			if len(line) == 1:
+				# prva linija, broj cvorova, inicijilaziraj matricu
+				# nulama
+				r = int(line[0]);
+				
+				matUdalj = [[0]*r for i in range(r)] 
+			else:
+				# linije s udaljenostima
+				matUdalj[int(line[0])][int(line[1])] = float(line[2])
+				matUdalj[int(line[1])][int(line[0])] = float(line[2])	
 		
 	
 
@@ -67,7 +67,7 @@ for g in range (0, r-3):
 			else:
 				qval = (velQ - 2)*matUdalj[i][j] - sumI - sumJ
 			
-				if (qval < minimum):
+                                if (qval < minimum):
 					minimum = qval
 					minI = i
 					minJ = j
@@ -75,15 +75,16 @@ for g in range (0, r-3):
 			redak.append( qval ) 
 		q.append(redak)
 
-	# udaljenost izmedju clanova para i nove tocke
+        # udaljenost izmedju clanova para i nove tocke
 	sumI = 0
 	sumJ = 0
 	for k in range(0, velQ):
         	sumI += matUdalj[minI][k]
                	sumJ += matUdalj[minJ][k]
 
-	distMinIAndNew = 0.5*matUdalj[minI][minJ] + (1/(2*(velQ-2))) * (sumI - sumJ)
+        distMinIAndNew = 0.5*matUdalj[minI][minJ] + 0.5*(1/(velQ*1.0-2))*(sumI - sumJ)
 	distMinJAndNew = matUdalj[minI][minJ] - distMinIAndNew
+
 
 
 	spremiste[2*r-velQ, indeksiKojiSuOstali[minI]] = distMinIAndNew
@@ -160,4 +161,7 @@ for keys,values in spremiste.items():
     for w in keys: 
 	print w,
     print(values)
+
+#print time.time() - start_time, "seconds"
+
 

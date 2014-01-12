@@ -1,7 +1,43 @@
 #include "structure.h"
 #include "util.h"
 
-//Update hash for pair distance
+/* Update distance sum from one node to all others
+	*param node_array - array who contain all nodes
+	*param distance_hash - double array of distances in hash
+	*param N - number of nodes in node_array
+	*return - node_array after operation
+*/ 
+struct node** refresh_distance_sum(struct node** node_array, 
+								   double *distance_hash, 
+								   unsigned int N)
+{
+	int i, k;
+	double sum = 0;
+	
+	for(i = 0 ; i < N ; ++i)
+	{
+		sum = 0;
+		for(k = 0 ; k < N ; ++k)
+		{
+			if (i != k)
+			{	
+				sum += distance_hash[get_real_index(i, k, N)];
+			}
+		}
+		node_array[i]->distance_sum = sum;
+	}
+
+	
+	return node_array;
+}
+
+/* Update hash for pair distance
+	*param distance_matrix - array of distances
+	*param distance_hash - double array of distances in hash
+	*param node_size - number of nodes
+	*param pair_size - number of distances
+	*return - distance_hash after operation
+*/
 double *compute_distance_hash(struct pair **distance_matrix, 
 							  double *distance_hash, 
 							  unsigned int node_size,
@@ -21,8 +57,15 @@ double *compute_distance_hash(struct pair **distance_matrix,
 	return distance_hash;
 }
 
-//Compute Q value for pairs
-struct pair* compute_Q_for_pair(struct pair* q_pair, 
+/* Compute Q value for pairs
+	*param node_array - array who contain all nodes
+	*param q_pair - pair type (distance) for Q value
+	*param distance_hash - double array of distances in hash
+	*param node_size - number of nodes
+	*return q_pair after operation
+*/
+struct pair* compute_Q_for_pair(struct node **node_array,
+								struct pair* q_pair, 
 								double *distance_hash, 
 								unsigned int node_size)
 {
@@ -32,8 +75,8 @@ struct pair* compute_Q_for_pair(struct pair* q_pair,
 	i = q_pair->left->node_array_index;
 	j = q_pair->right->node_array_index;
 
-	sum_i = get_sum(i, distance_hash, node_size);
-	sum_j = get_sum(j, distance_hash, node_size);
+	sum_i = get_sum(i, node_array);
+	sum_j = get_sum(j, node_array);
 	
 	distance_i_j = distance_hash[get_real_index(i, j, node_size)];
 
@@ -44,7 +87,14 @@ struct pair* compute_Q_for_pair(struct pair* q_pair,
 	return q_pair;
 }
 
-//Compute Q value for every pair
+/* Compute Q value for every pair
+	*param node_array - array who contain all nodes
+	*param distance_matrix - array of distances
+	*param distance_hash - double array of distances in hash
+	*param node_size - number of nodes
+	*param pair_size - number of distances
+	*return distance_matrix after operation	
+*/
 struct pair** compute_Q_function(struct node **node_array, 
 						  		 struct pair **distance_matrix, 
 						  		 double *distance_hash,
@@ -55,7 +105,8 @@ struct pair** compute_Q_function(struct node **node_array,
 
 	for(i = 0 ; i < pair_size ; ++i)
 	{
-		distance_matrix[i] = compute_Q_for_pair(distance_matrix[i], 
+		distance_matrix[i] = compute_Q_for_pair(node_array,
+												distance_matrix[i], 
 												distance_hash, 
 												node_size);
 	}
@@ -64,7 +115,11 @@ struct pair** compute_Q_function(struct node **node_array,
 }
 
 
-//Find pair with smallest Q value
+/* Find pair with smallest Q value
+	*param distance_matrix - array of distances
+	*param pair_size - number of distances	
+	*return index of best distance
+*/
 unsigned int find_best_pair(struct pair **distance_matrix, 
 							unsigned int pair_size)
 {

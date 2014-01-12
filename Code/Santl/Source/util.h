@@ -1,3 +1,5 @@
+#include "structure.h" 
+
 #ifndef UTIL
 #define UTIL
 
@@ -17,7 +19,7 @@ unsigned int triangle_sum(unsigned int i, unsigned int N);
 unsigned int get_real_index(unsigned int i, unsigned int j, unsigned int N);
 
 //Get sum of distances for formulas in algorithm
-double get_sum(unsigned int p, double *distance_hash, unsigned int N);
+double get_sum(unsigned int index, struct node **node_array);
 
 
 #endif

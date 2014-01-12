@@ -3,7 +3,11 @@
 #include "util.h"
 #include "init.h"
 
-//Set tree root and connect last three nodes
+/* Set tree root and connect last three nodes
+	*param ROOT - structure for last three nodes
+	*param distance_matrix - array od distances
+	*return structure for last three nodes in algorithm
+*/
 struct nj_root* connect_to_root(struct nj_root *ROOT, 
 								struct pair **distance_matrix)
 {
@@ -46,7 +50,7 @@ struct nj_root* connect_to_root(struct nj_root *ROOT,
 	c = 0.5*(d1+d3-d2);
 
 	ROOT->node1 = node_a; 
-	ROOT->node2 = node_b, 
+	ROOT->node2 = node_b;
 	ROOT->node3 = node_c;
 	ROOT->d1 = a;
 	ROOT->d2 = b; 
@@ -56,7 +60,13 @@ struct nj_root* connect_to_root(struct nj_root *ROOT,
 	return ROOT;
 }
 
-//Delete nodes from node_array who have index i or index j
+/* Delete nodes from node_array who have index i or index j
+	*param node_array - array of nodes 
+	*param node_size - number of nodes
+	*param i - first node in (i,j) pair
+	*param j - second node in (i,j) pair
+	*return node_array after operation
+*/
 struct node** delete_index_node_array(struct node **node_array,
 									  unsigned int *node_size,  
 							 		  unsigned int i, 
@@ -76,7 +86,12 @@ struct node** delete_index_node_array(struct node **node_array,
 	return node_array;
 }
 
-//Delete pairs from distance matrix with index i or index j
+/* Delete pairs from distance matrix with index i or index j
+	*param distance_matrix - array of distances 
+	*param pair_size - number of pairs in distance matrix
+	*param i - first node for delete
+	*param j - second node for delete
+*/
 struct pair** delete_index_pair_array(struct pair **distance_matrix,
 									  unsigned int *pair_size,
 									  unsigned int i,
@@ -102,18 +117,30 @@ struct pair** delete_index_pair_array(struct pair **distance_matrix,
 }
 
 
-//Add new node in node array
+/* Add new pair in distance matrix
+	*param node_array - array of nodes
+	*param node_size - pointer to number of nodes
+	*param distance_hash - double array contains distances in hash
+	*param left - left node 
+	*param right - right node
+	*param old_size - size before delete 
+	*param sum1 - sum of distances for left node
+	*param sum2 - sum of distances for right node
+	*return node_array after operation
+*/
 struct node** add_new_node(struct node **node_array, 
 						   unsigned int *node_size,
 						   double *distance_hash,
 						   struct node *left,
 						   struct node *right,
-						   unsigned int old_size)
+						   unsigned int old_size,
+						   double sum1,
+						   double sum2)
 {
 	struct node* new_node = (struct node*) malloc(sizeof(struct node));
 	unsigned int right_index;
 	unsigned int left_index;
-	double sum1, sum2, d, d1, d2;
+	double d, d1, d2;
 	int N;
 
 	N = old_size;
@@ -123,9 +150,6 @@ struct node** add_new_node(struct node **node_array,
 
 	left_index = left->node_array_index;
 	right_index = right->node_array_index;
-
-	sum1 = get_sum(left_index, distance_hash, N);
-	sum2 = get_sum(right_index, distance_hash, N);
 
 	d = distance_hash[get_real_index(right_index, left_index, N)];
 	d1 = 0.5*d + 1.0/(2*(N-2)) * (sum1 - sum2);
@@ -144,7 +168,17 @@ struct node** add_new_node(struct node **node_array,
 	return node_array;
 }
 
-//Add new pair in distance matrix
+/* Add new pair in distance matrix
+	*param node_array - array of nodes
+	*param distance_matrix - distance array
+	*param distance_hash - double array contains distances in hash
+	*param node_size - pointer to number of nodes
+	*param pair_size - pointer to number of distances
+	*param i - first node
+	*param j - second node
+	*param node_array_old_size - size before delete
+	*return distance_matrix after operation
+*/
 struct pair **add_new_pairs(struct node **node_array, 
 						   struct pair **distance_matrix,
 						   double *distance_hash, 
@@ -184,7 +218,11 @@ struct pair **add_new_pairs(struct node **node_array,
 	return distance_matrix;	
 }
 
-//Update node_array_index in node structure for all nodes
+/* Update node_array_index in node structure for all nodes
+	*param node_array - array of nodes
+	*param node_size - number of nodes
+	*return node_array after operation
+*/
 struct node** update_array_indices(struct node **node_array, int node_size)
 {
 	int i;
@@ -194,7 +232,14 @@ struct node** update_array_indices(struct node **node_array, int node_size)
 	return node_array;
 }
 
-//Global function for delete and set structures
+/* Global function for delete and set structures
+	*param node_array - array of nodes
+	*param distance_matrix - distance array
+	*param distance_hash - double array contains distances in hash
+	*param best_pair_index - index of best pair
+	*param node_size - number of nodes
+	*param pair_size - number of distances
+*/
 void delete_and_set_arrays(struct node **node_array, 
 						   struct pair **distance_matrix,
 						   double *distance_hash, 
@@ -203,6 +248,7 @@ void delete_and_set_arrays(struct node **node_array,
 						   unsigned int *pair_size)
 {
 	unsigned int i, j, old_size;
+	double sum1, sum2;
 	
 	struct node *left = distance_matrix[best_pair_index]->left;
 	struct node *right = distance_matrix[best_pair_index]->right; 
@@ -210,6 +256,8 @@ void delete_and_set_arrays(struct node **node_array,
 	i = left->node_array_index;
 	j = right->node_array_index;
 	old_size = *node_size;
+	sum1 = get_sum(i, node_array);
+	sum2 = get_sum(j, node_array);
 
 	//delete elements i and j from node array then shift array
 	node_array = delete_index_node_array(node_array, node_size, i, j);
@@ -218,7 +266,7 @@ void delete_and_set_arrays(struct node **node_array,
 	distance_matrix = delete_index_pair_array(distance_matrix, pair_size, i, j);
 
 	node_array = add_new_node(node_array, node_size, distance_hash, 
-							  left, right, old_size);
+							  left, right, old_size, sum1, sum2);
 	
 	distance_matrix = add_new_pairs(node_array, 
 									distance_matrix,
