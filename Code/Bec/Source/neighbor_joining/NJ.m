@@ -102,11 +102,11 @@
         
         _maxID++;
         
-        Branch *node1 = [Branch branchWithDistance:dfu nodeIndexI:f nodeIndexJ:_maxID];
-        Branch *node2 = [Branch branchWithDistance:dgu nodeIndexI:g nodeIndexJ:_maxID];
+        Branch *branch1 = [Branch branchWithDistance:dfu nodeIndexI:f nodeIndexJ:_maxID];
+        Branch *branch2 = [Branch branchWithDistance:dgu nodeIndexI:g nodeIndexJ:_maxID];
         
-        [ret addObject:node1];
-        [ret addObject:node2];
+        [ret addObject:branch1];
+        [ret addObject:branch2];
         
         for (NSNumber *numK in indexes) {
             int k = [numK intValue];
@@ -135,11 +135,11 @@
     float dbu = (dMatrix[b][a] + dMatrix[b][c] - dMatrix[a][c]) / 2.0;
     float dcu = (dMatrix[c][a] + dMatrix[c][b] - dMatrix[a][b]) / 2.0;
     
-    Branch *node1 = [Branch branchWithDistance:dau nodeIndexI:a nodeIndexJ:_maxID];
-    Branch *node2 = [Branch branchWithDistance:dbu nodeIndexI:b nodeIndexJ:_maxID];
-    Branch *node3 = [Branch branchWithDistance:dcu nodeIndexI:c nodeIndexJ:_maxID];
+    Branch *branch1 = [Branch branchWithDistance:dau nodeIndexI:a nodeIndexJ:_maxID];
+    Branch *branch2 = [Branch branchWithDistance:dbu nodeIndexI:b nodeIndexJ:_maxID];
+    Branch *branch3 = [Branch branchWithDistance:dcu nodeIndexI:c nodeIndexJ:_maxID];
     
-    [ret addObjectsFromArray:@[node1, node2, node3]];
+    [ret addObjectsFromArray:@[branch1, branch2, branch3]];
     return ret;
 }
 

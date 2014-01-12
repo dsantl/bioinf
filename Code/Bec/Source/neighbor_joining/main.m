@@ -51,15 +51,15 @@ int main(int argc, const char * argv[])
         
         for (int i = 0; i < N; ++i) {
             fscanf(iFile, "%d %d %lf", &a, &b, &value);
-            Branch *node = [Branch branchWithDistance:value nodeIndexI:a nodeIndexJ:b];
-            [array addObject:node];
+            Branch *branch = [Branch branchWithDistance:value nodeIndexI:a nodeIndexJ:b];
+            [array addObject:branch];
         }
         
         NJ *nj = [[NJ alloc] initWithDistanceArray:array r:n];
         NSMutableArray *output = [nj joinNeighbors];
         
-        for (Branch *node in output) {
-            fprintf(oFile, "%ld %ld %f\n", node.i, node.j, node.distance);
+        for (Branch *branch in output) {
+            fprintf(oFile, "%ld %ld %f\n", branch.i, branch.j, branch.distance);
         }
         
 #ifdef DEBUG
