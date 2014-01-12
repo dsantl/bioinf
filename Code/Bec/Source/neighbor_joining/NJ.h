@@ -3,7 +3,7 @@
 //  neighbor_joining
 //
 //  Created by Filip Bec on 12/01/14.
-//  Copyright (c) 2014 Infinum Ltd. All rights reserved.
+//  Copyright (c) 2014 Filip Bec. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
