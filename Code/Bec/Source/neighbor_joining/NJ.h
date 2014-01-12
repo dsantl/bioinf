@@ -16,14 +16,14 @@
 
 /**
  Init method
- @param distanceArray Array of @c Node objects.
+ @param distanceArray Array of @c Branch objects.
  @returns An instance of NJ.
  */
 - (id)initWithDistanceArray:(NSMutableArray*)distanceArray r:(NSInteger)r;
 
 /**
- Creating tree from graph of Node objects.
- @returns Array of @c Node objects that represents tree created with Neighbor joining method.
+ Creating tree from graph of Branch objects.
+ @returns Array of @c Branch objects that represents tree created with Neighbor joining method.
  */
 - (NSMutableArray*)joinNeighbors;
 

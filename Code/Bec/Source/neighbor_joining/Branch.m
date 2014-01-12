@@ -12,12 +12,12 @@
 
 + (instancetype)branchWithDistance:(CGFloat)value nodeIndexI:(NSInteger)i nodeIndexJ:(NSInteger)j
 {
-    Branch *node = [[Branch alloc] init];
-    node.distance = value;
-    node.i = i;
-    node.j = j;
+    Branch *branch = [[Branch alloc] init];
+    branch.distance = value;
+    branch.i = i;
+    branch.j = j;
     
-    return node;
+    return branch;
 }
 
 - (BOOL)isEqual:(id)object
@@ -26,8 +26,8 @@
         return NO;
     }
     
-    Branch *node = (Branch*)object;
-    if ((node.i == self.i && node.j == self.j) || (node.i == self.j && node.j == self.i)) {
+    Branch *branch = (Branch*)object;
+    if ((branch.i == self.i && branch.j == self.j) || (branch.i == self.j && branch.j == self.i)) {
         return YES;
     }
     return NO;
@@ -35,7 +35,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Node> %ld %ld: %f", self.i, self.j, self.distance];
+    return [NSString stringWithFormat:@"<Branch> %ld %ld: %f", self.i, self.j, self.distance];
 }
 
 @end
