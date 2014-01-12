@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Node.h"
+#import "Branch.h"
 
 /**
  Neighbor joining.

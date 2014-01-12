@@ -11,7 +11,7 @@
 		DCA074A818829E5E001010D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA074A718829E5E001010D3 /* main.m */; };
 		DCA074AC18829E5E001010D3 /* neighbor_joining.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DCA074AB18829E5E001010D3 /* neighbor_joining.1 */; };
 		DCA074B418829F65001010D3 /* NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA074B318829F65001010D3 /* NJ.m */; };
-		DCA074BA1882CF7C001010D3 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA074B91882CF7C001010D3 /* Node.m */; };
+		DCA074BA1882CF7C001010D3 /* Branch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA074B91882CF7C001010D3 /* Branch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,8 +35,8 @@
 		DCA074AB18829E5E001010D3 /* neighbor_joining.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = neighbor_joining.1; sourceTree = "<group>"; };
 		DCA074B218829F65001010D3 /* NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJ.h; sourceTree = "<group>"; };
 		DCA074B318829F65001010D3 /* NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJ.m; sourceTree = "<group>"; };
-		DCA074B81882CF7C001010D3 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
-		DCA074B91882CF7C001010D3 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
+		DCA074B81882CF7C001010D3 /* Branch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Branch.h; sourceTree = "<group>"; };
+		DCA074B91882CF7C001010D3 /* Branch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Branch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +84,8 @@
 				DCA074A918829E5E001010D3 /* Supporting Files */,
 				DCA074B218829F65001010D3 /* NJ.h */,
 				DCA074B318829F65001010D3 /* NJ.m */,
-				DCA074B81882CF7C001010D3 /* Node.h */,
-				DCA074B91882CF7C001010D3 /* Node.m */,
+				DCA074B81882CF7C001010D3 /* Branch.h */,
+				DCA074B91882CF7C001010D3 /* Branch.m */,
 			);
 			path = neighbor_joining;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 			files = (
 				DCA074A818829E5E001010D3 /* main.m in Sources */,
 				DCA074B418829F65001010D3 /* NJ.m in Sources */,
-				DCA074BA1882CF7C001010D3 /* Node.m in Sources */,
+				DCA074BA1882CF7C001010D3 /* Branch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +263,7 @@
 				DCA074B118829E5E001010D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

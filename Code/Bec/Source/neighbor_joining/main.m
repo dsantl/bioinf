@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "NJ.h"
-#import "Node.h"
+#import "Branch.h"
 
+/**
+ Main function.
+ */
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
@@ -34,10 +37,10 @@ int main(int argc, const char * argv[])
         }
         
         if (iFile == NULL) {
-            @throw [NSException exceptionWithName:@"FileError" reason:@"Input file can not be opened." userInfo:nil];
+            @throw [NSException exceptionWithName:@"FileError" reason:@"The input file can not be opened." userInfo:nil];
         }
         if (oFile == NULL) {
-            @throw [NSException exceptionWithName:@"FileError" reason:@"Output file can not be opened." userInfo:nil];
+            @throw [NSException exceptionWithName:@"FileError" reason:@"The output file can not be opened." userInfo:nil];
         }
         
         
@@ -48,14 +51,14 @@ int main(int argc, const char * argv[])
         
         for (int i = 0; i < N; ++i) {
             fscanf(iFile, "%d %d %lf", &a, &b, &value);
-            Node *node = [Node nodeWithDistance:value I:a J:b];
+            Branch *node = [Branch branchWithDistance:value nodeIndexI:a nodeIndexJ:b];
             [array addObject:node];
         }
         
         NJ *nj = [[NJ alloc] initWithDistanceArray:array r:n];
         NSMutableArray *output = [nj joinNeighbors];
         
-        for (Node *node in output) {
+        for (Branch *node in output) {
             fprintf(oFile, "%ld %ld %f\n", node.i, node.j, node.distance);
         }
         

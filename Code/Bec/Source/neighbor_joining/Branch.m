@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Infinum Ltd. All rights reserved.
 //
 
-#import "Node.h"
+#import "Branch.h"
 
-@implementation Node
+@implementation Branch
 
-+ (instancetype)nodeWithDistance:(CGFloat)value I:(NSInteger)i J:(NSInteger)j
++ (instancetype)branchWithDistance:(CGFloat)value nodeIndexI:(NSInteger)i nodeIndexJ:(NSInteger)j
 {
-    Node *node = [[Node alloc] init];
+    Branch *node = [[Branch alloc] init];
     node.distance = value;
     node.i = i;
     node.j = j;
@@ -22,11 +22,11 @@
 
 - (BOOL)isEqual:(id)object
 {
-    if (![object isKindOfClass:[Node class]]) {
+    if (![object isKindOfClass:[Branch class]]) {
         return NO;
     }
     
-    Node *node = (Node*)object;
+    Branch *node = (Branch*)object;
     if ((node.i == self.i && node.j == self.j) || (node.i == self.j && node.j == self.i)) {
         return YES;
     }

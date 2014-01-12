@@ -40,7 +40,7 @@
             }
         }
         
-        for (Node *n in distanceArray) {
+        for (Branch *n in distanceArray) {
             dMatrix[n.i][n.j] = n.distance;
             dMatrix[n.j][n.i] = n.distance;
         }
@@ -59,8 +59,21 @@
 - (NSMutableArray *)joinNeighbors
 {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
+    float *suma = (float*)malloc(_N * sizeof(float));
     
     while (_r > 3) {
+        
+        for (int numI = 0; numI < indexes.count; ++numI) {
+            int i = [indexes[numI] intValue];
+            
+            suma[i] = 0.0;
+            for (int numJ = 0; numJ < indexes.count; ++numJ) {
+                int j = [indexes[numJ] intValue];
+                
+                suma[i] += dMatrix[i][j];
+            }
+        }
+        
         int f = 0;
         int g = 0;
         CGFloat minVal = CGFLOAT_MAX;
@@ -71,13 +84,7 @@
             for (int numJ = numI+1; numJ < indexes.count; ++numJ) {
                 int j = [indexes[numJ] intValue];
                 
-                CGFloat q = (_r - 2.0) * dMatrix[i][j];
-                for (NSNumber *numK in indexes) {
-                    int k = [numK intValue];
-                    
-                    q -= dMatrix[i][k];
-                    q -= dMatrix[j][k];
-                }
+                CGFloat q = (_r - 2.0) * dMatrix[i][j] - suma[i] - suma[j];
                 
                 if (q < minVal) {
                     minVal = q;
@@ -90,17 +97,13 @@
         float dfu = 0.0;
         float dgu = 0.0;
         
-        for (NSNumber *numK in indexes) {
-            int k = [numK intValue];
-            dfu += dMatrix[f][k] - dMatrix[g][k];
-        }
-        dfu = 0.5 * dMatrix[f][g] + (0.5 / (_r - 2) * dfu);
+        dfu = 0.5 * dMatrix[f][g] + (0.5 / (_r - 2) * (suma[f] - suma[g]));
         dgu = dMatrix[f][g] - dfu;
         
         _maxID++;
         
-        Node *node1 = [Node nodeWithDistance:dfu I:f J:_maxID];
-        Node *node2 = [Node nodeWithDistance:dgu I:g J:_maxID];
+        Branch *node1 = [Branch branchWithDistance:dfu nodeIndexI:f nodeIndexJ:_maxID];
+        Branch *node2 = [Branch branchWithDistance:dgu nodeIndexI:g nodeIndexJ:_maxID];
         
         [ret addObject:node1];
         [ret addObject:node2];
@@ -120,6 +123,7 @@
         
         --_r;
     }
+    free(suma);
     
     _maxID++;
     
@@ -131,9 +135,9 @@
     float dbu = (dMatrix[b][a] + dMatrix[b][c] - dMatrix[a][c]) / 2.0;
     float dcu = (dMatrix[c][a] + dMatrix[c][b] - dMatrix[a][b]) / 2.0;
     
-    Node *node1 = [Node nodeWithDistance:dau I:a J:_maxID];
-    Node *node2 = [Node nodeWithDistance:dbu I:b J:_maxID];
-    Node *node3 = [Node nodeWithDistance:dcu I:c J:_maxID];
+    Branch *node1 = [Branch branchWithDistance:dau nodeIndexI:a nodeIndexJ:_maxID];
+    Branch *node2 = [Branch branchWithDistance:dbu nodeIndexI:b nodeIndexJ:_maxID];
+    Branch *node3 = [Branch branchWithDistance:dcu nodeIndexI:c nodeIndexJ:_maxID];
     
     [ret addObjectsFromArray:@[node1, node2, node3]];
     return ret;
