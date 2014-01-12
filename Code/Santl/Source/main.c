@@ -128,7 +128,7 @@ int main(void)
 
 	//print solution
 	print_solution(node_array, ROOT);
-
+	
 	free_memory(node_array, distance_matrix, number_of_pair);
 
 	return 0;

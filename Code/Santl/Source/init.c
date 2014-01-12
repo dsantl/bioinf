@@ -34,7 +34,7 @@ struct node** init_node_array(unsigned int size)
 
 /* Function for init distance array of pairs
 	*param size - size of distances
-	return distance matrix array
+	*return distance matrix array
 */
 struct pair** init_distance_matrix(unsigned int size)
 {

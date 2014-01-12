@@ -22,13 +22,16 @@ void rec_free_node_array(struct node *node)
 void free_memory(struct node **node_array, struct pair **distance_matrix, int N)
 {
 	int i;
+	
+	
 	rec_free_node_array(node_array[0]);
 	rec_free_node_array(node_array[1]);
 	rec_free_node_array(node_array[2]);
 	free(node_array);
+	
 	for(i = 0 ; i < N ; ++i)
 	{
 		free(distance_matrix[i]);
 	}
-	free(distance_matrix);
+	//free(distance_matrix);
 }
