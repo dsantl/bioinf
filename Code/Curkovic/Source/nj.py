@@ -50,22 +50,23 @@ velQ = r
 for g in range (0, r-3):
 	q = []
 	minimum = 100000
+        sumInRow = [0]*velQ
+
+        for k in range(0, velQ):
+            for w in range(0, velQ):
+                sumInRow[k] += matUdalj[k][w]
+
 
 	# izrada Q matrice
 	for i in range(0, velQ):
 		redak = []
 		for j in range (0, velQ):
 			#print("%s %s : %s" %  (i, j, matUdalj[i][j]))
-			sumI = 0
-			sumJ = 0
-			for k in range(0, velQ):
-				sumI += matUdalj[i][k]
-				sumJ += matUdalj[j][k]
 			#print("suma i,j.. %s %s %s" % (sumI, sumJ, matUdalj[i][j]))
 			if i == j :
 				qval = 0.0
 			else:
-				qval = (velQ - 2)*matUdalj[i][j] - sumI - sumJ
+                                qval = (velQ - 2)*matUdalj[i][j] - sumInRow[i] - sumInRow[j]
 			
                                 if (qval < minimum):
 					minimum = qval
@@ -76,13 +77,8 @@ for g in range (0, r-3):
 		q.append(redak)
 
         # udaljenost izmedju clanova para i nove tocke
-	sumI = 0
-	sumJ = 0
-	for k in range(0, velQ):
-        	sumI += matUdalj[minI][k]
-               	sumJ += matUdalj[minJ][k]
 
-        distMinIAndNew = 0.5*matUdalj[minI][minJ] + 0.5*(1/(velQ*1.0-2))*(sumI - sumJ)
+        distMinIAndNew = 0.5*matUdalj[minI][minJ] + (0.5/(velQ-2))*(sumInRow[minI] - sumInRow[minJ])
 	distMinJAndNew = matUdalj[minI][minJ] - distMinIAndNew
 
 
