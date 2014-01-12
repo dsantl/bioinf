@@ -83,7 +83,7 @@ void DistanceMat::removeCol(int col) {
 			throw string("Index out of range!!");
 		d.at(i).erase(d.at(i).begin() + col);
 	}
-	sumRowMap.clear(); // ocistimo hash sume redaka
+	sumRowMap.clear(); // clear hash sum row
 }
 
 

@@ -26,7 +26,7 @@ NJ::~NJ() { delete dMat; }
 */
 pTree* NJ::start() {
 	pTree *pt = new pTree(r);
-	int i, j, u;
+	int i, j, u = 0;
 	int n = r;
 
 	// r-3 iterations
