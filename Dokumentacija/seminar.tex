@@ -1,0 +1,96 @@
+\documentclass[times, utf8, seminar, numeric]{fer}
+\usepackage{booktabs, url, hyperref}
+\usepackage{verbatim}
+\usepackage{moreverb}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{epstopdf}
+
+\hypersetup{
+   colorlinks,
+   citecolor=black,
+   filecolor=black,
+   linkcolor=black,
+   urlcolor=black
+}
+
+%dodatak za programski kod
+\usepackage{listings}
+\usepackage{color}
+\usepackage{setspace}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\small\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+
+\begin{document}
+
+\nocite{saitou}\nocite{phylpro}\nocite{wiki}\nocite{mbt}
+
+% TODO: Navedite naslov rada.
+\title{Algoritam "Neighbor joining"}
+
+% TODO: Navedite vaše ime i prezime.
+\author{\itshape{Filip Beć}\\
+				 \itshape{Zorana Ćurković}\\
+				 \itshape{Goran Gašić}\\
+				 \itshape{Melita Kokot}\\
+				 \itshape{Dino Šantl}\\
+				 \itshape{Igor Smolkovič}
+				 }
+
+% TODO: Navedite ime i prezime mentora.
+\voditelj{\itshape{Dr. sc. Mirjana Domazet-Lošo}\\ \itshape{Doc. dr. sc. Mile Šikić}}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Opis algoritma}
+
+\chapter{Primjer izvođenja}
+
+\chapter{Testiranje i usporedbe}
+
+\chapter{Zaključak}
+
+\bibliography{literatura}
+%\bibliographystyle{fer} %promijena za citiranje po redu ieeetr
+\bibliographystyle{ieeetr}
+
+\begin{comment}
+\begin{sazetak}
+Simbolička regresija je postupak otkrivanja matematičkog izraza u skupu podataka. Daje se pregled metoda za simboličku regresiju s naglaskom na genetsko programiranje. Obrađuju se problemi kao što su domene funkcija (nisu definirane na cijelom skupu realnih brojeva). Problemi se rješavaju intervalnom aritmetikom i linearnim skaliranjem. Na kraju se ukratko opisuje mogućnost paralelizacije i primjene. 
+
+\kljucnerijeci{genetsko programiranje, s}
+
+\end{sazetak}
+
+% TODO: Navedite naslov na engleskom jeziku.
+\engtitle{Application of graphics coprocessors for program execution on stream programming model}
+
+\begin{abstract}
+
+
+\keywords{GPU, StreamIt, Sponge, StreamGate, CUDA, stream model, filter, optimization, graphics card}
+\end{abstract}
+\end{comment}
+
+\end{document}
