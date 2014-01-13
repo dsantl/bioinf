@@ -65,26 +65,26 @@
 
 \chapter{Opis algoritma}
 
-Algoritam \emph{Neighbor joining} služi za izgradnju filogenetskog stabla. Ulaz algoritma su evolucijske udaljenosti (matrica udaljenosti čvorova). Izlaz algoritma je stablo s težinskim bridovima. Cilj algoritma izgraditi je minimalno razapinjajuće filogenetsko stablo. Algoritam nužno ne pronalazi takvo stablo ali rješenja su često minimalna razapinjajuća filogenetska stabla ili blizu toga \cite{saitou}. Glavni razlog je smanjenje vremenske složenosti, jer u praksi nije izvedivo ispitivanje svih mogućih stabala. Stablo se gradi od dna prema vrhu. Algoritam je pohlepan jer za jednom sparene čvorove ne ispituje točnost tog koraka.
+Algoritam \emph{Neighbor joining} služi za izgradnju filogenetskog stabla. Ulaz algoritma su evolucijske udaljenosti (matrica udaljenosti čvorova). Izlaz algoritma je stablo s težinskim bridovima. Cilj algoritma je izgraditi minimalno razapinjajuće filogenetsko stablo. Algoritam nužno ne pronalazi takvo stablo, ali rješenja su često minimalna razapinjajuća filogenetska stabla ili blizu toga \cite{saitou}. Glavni razlog je smanjenje vremenske složenosti jer u praksi nije izvedivo ispitivanje svih mogućih stabala. Stablo se gradi od dna prema vrhu. Algoritam je pohlepan jer za jednom sparene čvorove ne ispituje točnost tog koraka.
 
-Algoritam se sastoji od dva dijela: uparivanje čvorova i završni korak. Algoritam kreće od matrice udaljenosti nad kojom zaključuje koja dva čvora je potrebno upariti. Kada su poznata dva čvora koja se trebaju upariti, stvara se novi čvor koji se spaja s dva odabrana. Dva odabrana čvora se brišu iz matrice udaljenosti, a novi čvor se ubaci u matricu udaljenosti. Taj postupak se izvršava $N-3$ puta, gdje je $N$ početni broj čvorova. Završni korak uzima zadnja tri čvora koja su ostala u matrici udaljenosti, stvara novi čvor i spaja novi čvor s tri zadnja čvora u matrici udaljenosti. Formalno algoritam izgleda ovako:
+Algoritam se sastoji od dva dijela: uparivanje čvorova i završni korak. Algoritam kreće od matrice udaljenosti nad kojom zaključuje koja dva čvora je potrebno upariti. Kada su poznata dva čvora koja se trebaju upariti, stvara se novi čvor koji se spaja s dva odabrana. Dva odabrana čvora se brišu iz matrice udaljenosti, a novi čvor se doda u matricu udaljenosti. Taj postupak se izvršava $N-3$ puta, gdje je $N$ početni broj čvorova. Završni korak uzima zadnja tri čvora koja su ostala u matrici udaljenosti, stvara novi čvor i spaja novi čvor s tri zadnja čvora u matrici udaljenosti. Formalno algoritam izgleda ovako:
 \begin{enumerate}
 	\item \textbf{Ulaz}: matrica udaljenosti
 	\item Na temelju trenutne matrice udaljenosti izračunaj matricu \textbf{Q}
 	\item U matrici \textbf{Q} pronađi najmanju vrijednost $Q(i,j)$ i pripadajuće čvorove $(i,j)$.
 	\item Stvori novi čvor $w$ i dva nova brida: $(w,i)$ i $(w,j)$ te izračunaj udaljenosti $d(w,i)$ i $d(w,j)$ i zapiši ih na pripadajući brid.
 	\item Iz matrice udaljenosti izbriši čvorove $i$ i $j$, te dodaj u matricu novi čvor $w$ - potrebno je izračunati udaljenosti do novoga čvora $w$
-	\item Ako postoji više od 3 čvora u matrici udaljenosti skoči na korak 2.
-	\item Stvori novi čvor $w$ i napravi 3 brida s preostalim čvorovima u matrici udaljenosti te izračunaj i pridruži vrijednost bridovima 
+	\item Ako postoji više od tri čvora u matrici udaljenosti skoči na korak 2.
+	\item Stvori novi čvor $w$ i napravi tri brida s preostalim čvorovima u matrici udaljenosti te izračunaj i pridruži vrijednost bridovima 
 \end{enumerate}
 
 \section{Matrica Q}
-Matrica \textbf{Q} pomoćna je matrica iz koje se određuje par čvorova koji će biti susjedni. Matrica \textbf{Q} kao kriterij uzima osim udaljenosti čvorova $i$ i $j$ utjecaj njihovih susjeda. Dokaz da je najmanja vrijednost matrice \textbf{Q} pripada susjednim čvorovima dan je u \cite{saitou}. Matrica \textbf{Q} izračunava se na sljedeći način:
+Matrica \textbf{Q} pomoćna je matrica iz koje se određuje par čvorova koji će biti susjedni. Matrica \textbf{Q} kao kriterij uzima osim udaljenosti čvorova $i$ i $j$ utjecaj njihovih susjeda. Dokaz da najmanja vrijednost matrice \textbf{Q} pripada susjednim čvorovima dan je u \cite{saitou}. Matrica \textbf{Q} izračunava se na sljedeći način:
 
 \begin{equation}
 	Q(i,j) = (r-2) d(i,j) - \sum_{k=1}^{r}d(i,k) - \sum_{k=1}^{r}d(j,k)
 \end{equation}
-, gdje su $i$, $j$ indeksi čvorova, r je trenutni broj čvorova u matrici udaljenosti. Oznake $d(i,j)$, $d(i,k)$ i $d(j,k)$ predstavljaju vrijednosti u matrici udaljenosti. Čvorovi $i$ i $j$ moraju biti različiti.
+, gdje su $i$, $j$ indeksi čvorova, $r$ je trenutni broj čvorova u matrici udaljenosti. Oznake $d(i,j)$, $d(i,k)$ i $d(j,k)$ predstavljaju vrijednosti u matrici udaljenosti. Čvorovi $i$ i $j$ moraju biti različiti.
 
 \section{Računanje vrijednosti bridova}
 
@@ -97,14 +97,14 @@ d(i,w) = \frac{1}{2}d(i,j)+\frac{1}{2(r-2)} \left [ \sum_{k=1}^{r}d(i,k) - \sum_
 \end{equation}
 , gdje je $r$ trenutni broj čvorova u matrici udaljenosti.
 
-Kako vrijedi $d(i,j)=d(i,w)+d(j,w)$, iz toga sljedi:
+Kako vrijedi $d(i,j)=d(i,w)+d(j,w)$, iz toga slijedi:
 \begin{equation}
 d(j,w) = d(i,j) - d(i,w)
 \end{equation}
 
 \section{Računanje udaljenosti do novog čvora}
 
-Pri ubacivanju novog čvora u matricu udaljenosti potrebno je izračunati udaljenost od svih starih čvorova do novog čvora $w$. Udaljenost se računa prema formuli: 
+Pri dodavanju novog čvora u matricu udaljenosti potrebno je izračunati udaljenost od svih starih čvorova do novog čvora $w$. Udaljenost se računa prema formuli: 
 
 \begin{equation}
 d(k,w) = \frac{1}{2} \left [ d(i,k) + d(j,k) - d(i,j) \right ]
@@ -113,7 +113,7 @@ d(k,w) = \frac{1}{2} \left [ d(i,k) + d(j,k) - d(i,j) \right ]
 
 \section{Složenost algoritma}
 
-Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova u početnoj matrici udaljenosti. U svakom koraku potrebno je izračunati matricu \textbf{Q} koja je dimenzije $r\times r$, gdje je $r$ trenutni broj čvorova. Ako se predprocesiraju sume u prije navedenim formulama u $O(N)$ vremenu, tada za računanje matrice \textbf{Q} potrebno $O(N^2)$ vremena. Zbog toga je ukupna vremenska složenost algritma $O(N^3)$. Memorijska složenost je $O(N^2)$ jer se pamti matrica udaljenosti.
+Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova u početnoj matrici udaljenosti. U svakom koraku potrebno je izračunati matricu \textbf{Q} koja je dimenzije $r\times r$, gdje je $r$ trenutni broj čvorova. Ako se pretprocesiraju sume u prije navedenim formulama u $O(N^2)$ vremenskoj složenosti, tada se matrica \textbf{Q} može izračunati u $O(N^2)$ vremenskoj složenosti. Zbog toga je ukupna vremenska složenost algoritma $O(N^3)$. Memorijska složenost je $O(N^2)$ jer se pamti matrica udaljenosti.
 
 \chapter{Primjer izvođenja}
 
@@ -236,6 +236,59 @@ Potrebno je još spojiti preostala $3$ čvora. U svrhu spajanja stvaramo novi č
 \end{figure}
 
 \chapter{Testiranje i usporedbe}
+\section{Korišteni jezici}
+Algoritam je implementiran u šest različitih jezika i to prema podijeli:
+\begin{itemize}
+	\item Filip Beć - \textbf{Objective-C}
+	\item Zorana Ćurković - \textbf{Python}
+	\item Goran Gašić - \textbf{Java}
+	\item Melita Kokot - \textbf{Ruby}
+	\item Dino Šantl - \textbf{C}
+	\item Igor Smolkovič - \textbf{C++}
+\end{itemize}
+
+\section{Infrastruktura}
+Algoritam kao ulaz uzima matricu udaljenosti. U praksi se algoritam \emph{Neighbor joining} koristi u kombinaciji s algoritmima poravnanja. Nakon što se genetski nizovi poravnaju računa se udaljenost između njih te je taj rezultat ulaz za algoritam \emph{Neighbor joining}. Kako ne bi svaka implementacija (jezik) posebno računao poravnanja napravljena je infrastruktura koja sama napravi poravnanja te samo udaljenosti preda kao ulaz u različite implementacije. Osim pripreme ulaza, infrastruktura se pobrine za crtanje dobivenog grafa, jer je čisti tekstualni zapis grafa beskoristan za ljudsku interpretaciju. Infrastruktura se nalazi u mapi \emph{"Infra/"} u repozitoriju.
+
+\subsection{Priprema ulaza - poravnanja}
+
+Za pripremu ulaza koristi se skripta \emph{alignament.py} napisana u \emph{Python}-u. Koristi se biblioteka \emph{BioPython} gdje se nalazi programska podrška za \emph{Muscle}. \emph{Muscle} omogućava višestruko poravnanje genetskih nizova. Kao ulaz daje se datoteka u \emph{FASTA} formatu. Izlaz je skup genetskih nizova iste duljine.
+ 
+Nakon koraka poravnanja potrebno je izračunati udaljenosti među dobivenim nizovima. Udaljenost se računa kao postotak poklapanja pripadajućih znakova u nizu gdje se zanemaruju procijepi. Na kraju se iz dobivenih postotaka računa udaljenost po Jukes-Cantorovom modelu.
+
+Na temelju indeksa genetskog niza i udaljenosti između nizova stvara se ulaz u algoritam  \emph{Neighbor joining} tako da se u prvi red zapiše broj genetskih nizova, a nakon toga u $\frac{N(N-1)}{2}$ redova se zapisuju udaljenosti između nizova kao: "$i$ $j$ distance", gdje je uvijek $i<j$, a $i$ i $j$ su pripadajući identifikatori nizova.
+
+\subsection{Crtanje grafa}
+
+Kako bi se mogli vizualizirati rezultati algoritma generira se datoteka u \emph{DOT} jeziku koji služi za opisivje grafova. Tako napisan program (opis grafa) može se prevesti u neki od slikovnih formata (npr. png).
+
+Implementacije algoritma \emph{Neighbor joining} kao izlaz daju skup bridova u obliku "$i$ $j$ distance", gdje su $i$ i $j$ čvorovi u stvorenom stablu, a \emph{distance} udaljenost između njih. Skripta \emph{generate\_graph.py} generira na temelju takvog izlaza (skupa bridova) opis grafa u \emph{DOT} jeziku.
+
+\subsection{Pokretanje primjera}
+
+Skripta napisana u \emph{bash} jeziku, \emph{nj\_process} spaja tri komponente infrastrukture - poravnanje nizova, implementaciju  \emph{Neighbor joining} algoritma i vizualizaciju dobivenog grafa. Skripta se koristi na sljedeći način: "\emph{./nj\_process program fasta\_datoteka}". 
+Za određenu implementaciju u repozitoriju potrebno je pokrenuti npr.:\\ "\emph{./nj\_process ../Code/Santl/Bin/neighbour\_joining test1.fasta}".
+Za druge implementacije dane su naredbe u \emph{README.md} u repozitoriju. Kao rezultat izvođenja infrastrukture dobija se sličan prikaz kao na slici \ref{ref:infra}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.6]{./img/infra.png}
+\caption{Primjer slike generirane pomoću infrastrukture}
+\label{ref:infra}
+\end{figure}
+
+\newpage
+\section{Testiranje}
+
+Za testiranje implementacija napisane su skripte koje omogućavaju automatizirano ispitivanje i vizualizaciju rezultata. Ispitna struktura se nalazi u repozitoriju u mapi \emph{"Test/"}.
+
+Testiranje obuhvaća tri cjeline: točnost, vrijeme izvođenja i korištena memorija. Komponentu točnosti nije se mogla utvrditi do kraja. Algoritam \emph{Neighbor joining} u svojoj definiciji ima nedeterminističko svojstvo. U algortmu nije definirano što se događa ako se u matrici \textbf{Q} pojave parovi čvorova koji imaju istu vrijednost. U tom slučaju može se uzeti bilo koji od njih i zato u ovisnosti o implementaciji izlazi algoritma mogu davati različita stabla.
+
+Za ispitivanje vremena izvođenja i korištene memorije generirani su test primjeri različitih veličina (broja čvorova). Ispod se nalaze grafovi koji prikazuju mjerene veličine.
+
+\subsection{Točnost}
+\subsection{Vrijeme izvođenja}
+\subsection{Korištena memorija}
 
 \chapter{Zaključak}
 
