@@ -4,7 +4,7 @@
 	Fakultet elektrotehnike i računarstva
 	Bioinformatika projekt
 	
-	Neigbor­ joining algorithm
+	Neighbor­ joining algorithm
 */
 
 
