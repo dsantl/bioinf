@@ -111,9 +111,26 @@ d(k,w) = \frac{1}{2} \left [ d(i,k) + d(j,k) - d(i,j) \right ]
 \end{equation}
 , gdje je $k$ bilo koji stari čvor u matrici udaljenosti. Čvorovi $i$ i $j$ su upravo spojeni čvorovi. 
 
+\section{Udaljenosti u završnom koraku}
+
+U završnom koraku ostaju tri čvora: $A$, $B$ i $C$. Udaljenost do novog čvora $w$ računa se prema izrazima:
+
+\begin{equation}
+d(A,w) = \frac{1}{2} \left [ d(A,B) + d(A,C) - d(B,C) \right ]
+\end{equation}
+
+\begin{equation}
+d(B,w) = \frac{1}{2} \left [ d(A,B) + d(B,C) - d(A,C) \right ]
+\end{equation}
+
+\begin{equation}
+d(C,w) = \frac{1}{2} \left [ d(A,C) + d(B,C) - d(A,B) \right ]
+\end{equation}
+
+
 \section{Složenost algoritma}
 
-Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova u početnoj matrici udaljenosti. U svakom koraku potrebno je izračunati matricu \textbf{Q} koja je dimenzije $r\times r$, gdje je $r$ trenutni broj čvorova. Ako se pretprocesiraju sume u prije navedenim formulama u $O(N^2)$ vremenskoj složenosti, tada se matrica \textbf{Q} može izračunati u $O(N^2)$ vremenskoj složenosti. Zbog toga je ukupna vremenska složenost algoritma $O(N^3)$. Memorijska složenost je $O(N^2)$ jer se pamti matrica udaljenosti.
+Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova u početnoj matrici udaljenosti. U svakom koraku potrebno je izračunati matricu \textbf{Q} koja je dimenzije $r\times r$, gdje je $r$ trenutni broj čvorova. Ako se pretprocesiraju sume u prije navedenim formulama izvede u $O(N^2)$ vremenskoj složenosti, tada se matrica \textbf{Q} može izračunati u $O(N^2)$ vremenskoj složenosti. Zbog toga je ukupna vremenska složenost algoritma $O(N^3)$. Memorijska složenost je $O(N^2)$ jer se pamti matrica udaljenosti.
 
 \chapter{Primjer izvođenja}
 
@@ -357,7 +374,7 @@ Rezultati ispitivanja korištene memorije jednako tako su očekivani. \emph{Java
 
 \chapter{Zaključak}
 
-Ishod projekta pokazao je kako određeni programski jezici utječu na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manjeg broja linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se, primjerice, izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje. Pokazalo se da se može koristiti u implementaciji algoritama, ali uz uvjet da se većim dijelom koristi samo podskup jezika koji je identičan jeziku C. Kada smo koristili objekte kao prikaz podataka rezultati su bili lošiji. \emph{Objective-C} zbog svoje sintakse teško je čitljiv korisnicima koji se primarno ne bave njime.
+Ishod projekta pokazao je kako određeni programski jezici utječu na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manjeg broja linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se, primjerice, izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje. Pokazalo se da se može koristiti u implementaciji algoritama, ali uz uvjet da se većim dijelom koristi samo podskup jezika koji je identičan jeziku \emph{C}. Kada smo koristili objekte kao prikaz podataka rezultati su bili lošiji. \emph{Objective-C} zbog svoje sintakse teško je čitljiv korisnicima koji se primarno ne bave njime, te je u vidu bioinformatike ovo loše svojstvo jezika.
 
 \bibliography{literatura}
 %\bibliographystyle{fer} %promijena za citiranje po redu ieeetr
