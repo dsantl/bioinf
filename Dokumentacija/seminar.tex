@@ -237,7 +237,7 @@ Potrebno je još spojiti preostala $3$ čvora. U svrhu spajanja stvaramo novi č
 
 \chapter{Testiranje i usporedbe}
 \section{Korišteni jezici}
-Algoritam je implementiran u šest različitih jezika i to prema podijeli:
+Algoritam je implementiran u šest različitih jezika i to prema podjeli:
 \begin{itemize}
 	\item Filip Beć - \textbf{Objective-C}
 	\item Zorana Ćurković - \textbf{Python}
@@ -248,7 +248,7 @@ Algoritam je implementiran u šest različitih jezika i to prema podijeli:
 \end{itemize}
 
 \section{Infrastruktura}
-Algoritam kao ulaz uzima matricu udaljenosti. U praksi se algoritam \emph{Neighbor joining} koristi u kombinaciji s algoritmima poravnanja. Nakon što se genetski nizovi poravnaju računa se udaljenost između njih te je taj rezultat ulaz za algoritam \emph{Neighbor joining}. Kako ne bi svaka implementacija (jezik) posebno računao poravnanja napravljena je infrastruktura koja sama napravi poravnanja te samo udaljenosti preda kao ulaz u različite implementacije. Osim pripreme ulaza, infrastruktura se pobrine za crtanje dobivenog grafa, jer je čisti tekstualni zapis grafa beskoristan za ljudsku interpretaciju. Infrastruktura se nalazi u mapi \emph{"Infra/"} u repozitoriju.
+Algoritam kao ulaz uzima matricu udaljenosti. U praksi se algoritam \emph{Neighbor joining} koristi u kombinaciji s algoritmima poravnanja. Nakon što se genetski nizovi poravnaju računa se udaljenost između njih te je taj rezultat ulaz algoritma \emph{Neighbor joining}. Kako ne bi svaka implementacija algoritma u sebi sadržavala i algoritam poravnanja, napravljena je infrastruktura koja napravi poravnanja neovisno o implementaciji (jeziku). Infrastruktura tada određenoj implementaciji preda rezultate izvođenja poravnanja tj. udaljenosti između genetskih nizova. Osim pripreme ulaza, infrastruktura se brine za crtanje dobivenog grafa, jer je čisti tekstualni zapis grafa beskoristan za ljudsku interpretaciju. Infrastruktura se nalazi u mapi \emph{"Infra/"} u repozitoriju.
 
 \subsection{Priprema ulaza - poravnanja}
 
@@ -347,7 +347,7 @@ Rezultati ispitivanja korištene memorije jednako tako su očekivani. \emph{Java
 
 \chapter{Zaključak}
 
-Ishod projekta pokazao je kako određeni programski jezici utjeću na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manji broj linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se primjerice izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje s različitim parametrima. \emph{Objective-C} je poseban slučaj. Pokazalo se da se može koristiti u implementaciji algoritama, samo što nije namijenjen znanstvenicima koji se primarno bave biologijom.
+Ishod projekta pokazao je kako određeni programski jezici utjeću na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje da se uz znatno manji broj linija i uz korištenje ugrađenih struktura podataka ostvare vrlo dobri rezultati. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se primjerice izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje s različitim parametrima. \emph{Objective-C} je poseban slučaj. Pokazalo se da se može koristiti u implementaciji algoritama, samo što nije namijenjen znanstvenicima koji se primarno bave biologijom.
 
 \bibliography{literatura}
 %\bibliographystyle{fer} %promijena za citiranje po redu ieeetr
