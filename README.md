@@ -7,16 +7,29 @@ bioinf
 
 Main script is nj_process.
 
-Usage: ./nj_process exec_of_nj input_fasta_file
+### Usage
 
-Other:
+```sh
+./nj_process exec_of_nj input_fasta_file
+```
 
+### Other
+
+```sh
 ./alignament.py input_fasta_file - to stdout print distance matrix (bridges)
+```
+
+```sh
 ./generate_graph.py - to stdin graph in bridge format
+```
 
+### Code
 
-Code: source codes and bin files
-Test: Infrastructure for test
+Source codes and bin files.
+
+### Test
+
+Infrastructure for test.
 
 ### Example
 
