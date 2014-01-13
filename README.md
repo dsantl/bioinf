@@ -37,31 +37,31 @@ Infrastructure for test.
 cd Infra
 ```
 
-Objective C:
+#### Objective C:
 ```sh
 ./nj_process ../Code/Bec/Bin/neighbor_joining test1.fasta
 ```
-Python:
+#### Python:
 ```sh
-./nj_process ../Code/Curkovic/Bin/nj.py test1.fasta # Python
+./nj_process ../Code/Curkovic/Bin/nj.py test1.fasta Python
 ```
 
-Java:
+#### Java:
 ```sh
-./nj_process ../Code/Gasic/Bin/neighbour_joining test1.fasta  # Java
+./nj_process ../Code/Gasic/Bin/neighbour_joining test1.fasta 
 ```
 
-Ruby:
+#### Ruby:
 ```sh
-./nj_process ../Code/Kokot/Bin/neighbour_joining.rb test1.fasta  # Ruby
+./nj_process ../Code/Kokot/Bin/neighbour_joining.rb test1.fasta 
 ```
 
-C:
+#### C:
 ```sh
-./nj_process ../Code/Santl/Bin/neighbour_joining test1.fasta  # C
+./nj_process ../Code/Santl/Bin/neighbour_joining test1.fasta 
 ```
 
-C++
+#### C++
 ```sh
-./nj_process ../Code/Smolkovic/Bin/LAB test1.fasta # C++
+./nj_process ../Code/Smolkovic/Bin/LAB test1.fasta 
 ```
