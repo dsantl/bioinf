@@ -43,7 +43,7 @@ cd Infra
 ```
 ###### Python:
 ```sh
-./nj_process ../Code/Curkovic/Bin/nj.py test1.fasta Python
+./nj_process ../Code/Curkovic/Bin/nj.py test1.fasta
 ```
 
 ###### Java:
