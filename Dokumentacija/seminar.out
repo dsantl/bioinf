@@ -1,0 +1,19 @@
+\BOOKMARK [0][-]{chapter.1}{Opis algoritma}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Matrica Q}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Racunanje vrijednosti bridova}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Racunanje udaljenosti do novog cvora}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Slo\236enost algoritma}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Primjer izvoenja}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Korak 1}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Korak 2}{chapter.2}% 8
+\BOOKMARK [0][-]{chapter.3}{Testiranje i usporedbe}{}% 9
+\BOOKMARK [1][-]{section.3.1}{Kori\235teni jezici}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.2}{Infrastruktura}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.2.1}{Priprema ulaza - poravnanja}{section.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.2.2}{Crtanje grafa}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.3}{Pokretanje primjera}{section.3.2}% 14
+\BOOKMARK [1][-]{section.3.3}{Testiranje}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.3.1}{Vrijeme izvoenja}{section.3.3}% 16
+\BOOKMARK [2][-]{subsection.3.3.2}{Kori\235tena memorija}{section.3.3}% 17
+\BOOKMARK [1][-]{section.3.4}{Rezultati}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{Zakljucak}{}% 19
