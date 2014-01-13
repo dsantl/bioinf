@@ -31,6 +31,7 @@ pTree* NJ::start() {
 
 	// r-3 iterations
 	for(int iter = 0; iter < n - 3; iter++) {
+		dMat->calcAllSums();
 		findMin(i, j);
 		double _dfu = d_fu(i, j); // u -> f
 		double _dgu = d_gu(i, j, _dfu); // u -> g

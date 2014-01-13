@@ -16,7 +16,7 @@ node::node(int _id, double _dist) : id(_id), distance(_dist) { }
 	pTree constructor
 	param: number of taxons
 */
-pTree::pTree(int n) : curId(n) {
+pTree::pTree(int n) : curId(n), firstNode(n) {
 	for(int i = 0; i < n; i++) {
 		addLeaf(i, 0);
 		mapNode.push_back(i);
@@ -143,6 +143,21 @@ void pTree::addLastNode(int u, DistanceMat* mat) {
 	print phylogenetic tree
 */
 void pTree::print() {
+	for(unsigned int i = firstNode; i < nodes.size(); i++) {
+		node *root = nodes.at(i);
+
+		for(unsigned int j = 0; j < root->children.size(); j++) {
+			node *child = nodes.at(root->children.at(j));
+			printf("%d %d %.6lf\n", root->id, child->id, child->distance);
+		}
+	}
+
+}
+
+/*
+	Print phygenetic tree using tree traversal
+*/
+void pTree::print2() {
 	node *root = nodes.at(nodes.size()-1);
 	traversal(root);
 }

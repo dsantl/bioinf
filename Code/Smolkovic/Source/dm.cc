@@ -12,6 +12,7 @@
 */
 DistanceMat::DistanceMat(int n) {
 	d = vector< vector< double > >(n, vector<double>(n, 0)); 
+	sumRowHash = vector< double >(n, 0);
 }
 
 /*
@@ -37,23 +38,35 @@ double DistanceMat::get(int i, int j) {
 
 
 /*
-	Calculate sum of row
+	Get sum of row
 	param: i - row number
 */
 double DistanceMat::sumRow(int i) {
-	double sum = 0;
 	if( i >= getSize()) throw string("Index out of range!!");
-	if(sumRowMap.find(i) != sumRowMap.end())
-		return sumRowMap[ i ];
+	return sumRowHash.at(i);
+}
 
+/*
+	Calculate sum of row
+	param: i - row number
+*/
+double DistanceMat::calcSumRow(int i) {
+	double sum = 0;
 	for(int j = 0; j < getSize(); j++) {
 		sum += d[ i ][ j ];
 	}
 
-	sumRowMap[ i ] = sum; // hash sum of row i
 	return sum;
 }
 
+/*
+	Calculate sums of rows for current distance matrix
+*/
+void DistanceMat::calcAllSums() {
+	for(int i = 0; i < getSize(); i++) {
+		sumRowHash.at(i) = calcSumRow(i);
+	}
+}
 
 /*
 	Return number of rows/columns
@@ -83,7 +96,6 @@ void DistanceMat::removeCol(int col) {
 			throw string("Index out of range!!");
 		d.at(i).erase(d.at(i).begin() + col);
 	}
-	sumRowMap.clear(); // clear hash sum row
 }
 
 

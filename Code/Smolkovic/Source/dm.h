@@ -12,6 +12,7 @@ using namespace std;
 	Distance Matrix
 		- get, insert distance value
 		- get row, get sum of row
+		- calculate sum row, calc all sums
 		- remove row, column
 		- print distance matrix
 */
@@ -19,7 +20,8 @@ using namespace std;
 class DistanceMat {
 private:
 	vector< vector< double > > d;
-	map< int, double > sumRowMap;
+	vector< double > sumRowHash;
+
 
 public:
 	DistanceMat(int);
@@ -30,7 +32,10 @@ public:
 	int getSize();
 	vector<double>& getRow(int);
 	double sumRow(int);
-	
+	double calcSumRow(int);
+	void calcAllSums();
+
+
 	void removeRow(int);
 	void removeCol(int);
 

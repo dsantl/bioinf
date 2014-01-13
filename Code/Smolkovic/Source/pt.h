@@ -34,6 +34,7 @@ class pTree {
 private:
 	vector< node* > nodes;
 	int curId;
+	int firstNode;
 	vector< int > mapNode;
 
 	void setDistance(int, double);
@@ -50,6 +51,7 @@ public:
 	void addNode(int, int, double, double, DistanceMat*);
 	void addLastNode(int, DistanceMat*);
 	void print();
+	void print2();
 };
 
  
