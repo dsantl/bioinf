@@ -282,15 +282,72 @@ Za druge implementacije dane su naredbe u \emph{README.md} u repozitoriju. Kao r
 
 Za testiranje implementacija napisane su skripte koje omogućavaju automatizirano ispitivanje i vizualizaciju rezultata. Ispitna struktura se nalazi u repozitoriju u mapi \emph{"Test/"}.
 
-Testiranje obuhvaća tri cjeline: točnost, vrijeme izvođenja i korištena memorija. Komponentu točnosti nije se mogla utvrditi do kraja. Algoritam \emph{Neighbor joining} u svojoj definiciji ima nedeterminističko svojstvo. U algortmu nije definirano što se događa ako se u matrici \textbf{Q} pojave parovi čvorova koji imaju istu vrijednost. U tom slučaju može se uzeti bilo koji od njih i zato u ovisnosti o implementaciji izlazi algoritma mogu davati različita stabla.
+Testiranje obuhvaća tri cjeline: točnost, vrijeme izvođenja i korištena memorija. Komponentu točnosti nije se mogla utvrditi do kraja. Algoritam \emph{Neighbor joining} u svojoj definiciji ima nedeterminističko svojstvo. U algortmu nije definirano što se događa ako se u matrici \textbf{Q} pojave parovi čvorova koji imaju istu vrijednost. U tom slučaju može se uzeti bilo koji od njih i zato u ovisnosti o implementaciji izlazi algoritma mogu davati različita stabla. Zato su se kao testni primjeri uzele matrice udaljenosti koje daju jedinstvena stabla. Za to je korištena skripta u mapi \emph{"Test/"} pod nazivom \emph{check\_isomorphism.py} koja provjerava izomorfnost dvaju težinskih grafova.
 
 Za ispitivanje vremena izvođenja i korištene memorije generirani su test primjeri različitih veličina (broja čvorova). Ispod se nalaze grafovi koji prikazuju mjerene veličine.
 
-\subsection{Točnost}
 \subsection{Vrijeme izvođenja}
+
+Vrijeme izvođenja algoritma testirano je nad brojem čvorova $N$=3, 5, 10, 50, 100, 150, 300, 500, 1000. Na slikama \ref{fig:time_100}, \ref{fig:time_50_300} i \ref{fig:time_150_1000} prikazane su različiti intervali i vremena izvođenja. Na intervalu $\left [ 150,1000 \right ]$ nisu prikazani skriptni jezici jer je fokus stavljen na druge jezike. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{./img/Primjeri_do_100.png}
+\caption{Vremena izvođenja algoritama za veličine od 3 do 100 čvorova}
+\label{fig:time_100}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{./img/Primjeri_50_300.png}
+\caption{Vremena izvođenja algoritama za veličine od 50 to 300 čvorova}
+\label{fig:time_50_300}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{./img/Primjeri_150_1000.png}
+\caption{Vremena izvođenja za primjere od 150 do 1000 čvorova}
+\label{fig:time_150_1000}
+\end{figure}
+
+\newpage
+
 \subsection{Korištena memorija}
 
+Mjerena je maksimalna količina memorije u nekom trentku za vrijeme izvođenja procesa. Jednako kao i za vrijeme, implementacije su ispitane nad brojem čvorova $N$=3, 5, 10, 50, 100, 150, 300, 500, 1000. U nastavku se nalaze različiti grafovi koji prikazuju različite intervala za broj čvorova. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{./img/memorija_100.png}
+\caption{Korištena memorija u kilobajtima do 100 čvorova}
+\label{fig:memorija_100}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{./img/memorija_300.png}
+\caption{Korištena memorija u kilobajtima od 50 do 300 čvorova}
+\label{fig:memorija_300}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{./img/memorija_1000.png}
+\caption{Korištena memorija od 300 do 1000 čvorova}
+\label{fig:memorija_1000}
+\end{figure}
+
+\section{Rezultati}
+Algoritam se može implementirati u apriornoj vremenskoj složenosti $O(N^3)$, gdje je $N$ broj čvorova. Mjerenja su pokazala da implementacija algoritma ovisi o jeziku u kojem je algoritam ostvaren. Tako generalno možemo reći da niži programski jezici daju bolje rezultate, dok skriptni jezici očekivano daju nešto lošja vremena izvođenja.
+
+Graf vremena izvođenja do sto čvorova (slika \ref{fig:time_100}) pokazuju da viši programski jezik \emph{Java} i skriptni jezici \emph{Ruby} i \emph{Python} imaju puno veća vremena izvođenja od ostalih jezika, što je i očekivano. Zanimljiv je graf na slici \ref{fig:time_50_300} gdje se vidi da za malo veći broj čvorova programski jezik \emph{Java} ima puno manje vrijeme izvođenja od skiptnih jezika. Za nešto veći broj čvorova, do njih 1000 (slika \ref{fig:time_150_1000}), pokazuje se da se \emph{Java} može mjeriti s ostalim jezicima. Najbolje vrijeme izvođenja imala je implementacija u \emph{C++} programskom jeziku, što je i očekivano jer je \emph{C++} dovoljno nizak jezik, a opet koristi bibliotetke struktura koje su optimizirane. Jezici \emph{Objective-C} i \emph{C} pokazuju gotovo identične rezultate.
+
+Rezultati ispitivanja korištene memorije jednako tako su očekivani. \emph{Java} programski jezik troši najviše memorije zbog popratnih troškova virtualnog stroja. Skriptni jezici troše nešto više memorije ali ne znatno od ostalih jezika. Implementacija u jeziku \emph{C} troši nešto više memorije zbog toga jer je napravljen \emph{trade-off} između čitkosti koda i efikasnosti. Jezici \emph{C++} i \emph{Objective-C} daju najbolje rezultate jer su korištene efikasne strukture odnosno \emph{Objective-C} prilagođen je za mobilne uređaje koji ne bi trebali trošiti puno memorije.
+
 \chapter{Zaključak}
+
+Ishod projekta pokazao je kako određeni programski jezici utjeću na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manji broj linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se primjerice izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje s različitim parametrima. \emph{Objective-C} je poseban slučaj. Pokazalo se da se može koristiti u implementaciji algoritama, samo što nije namijenjen znanstvenicima koji se primarno bave biologijom.
 
 \bibliography{literatura}
 %\bibliographystyle{fer} %promijena za citiranje po redu ieeetr

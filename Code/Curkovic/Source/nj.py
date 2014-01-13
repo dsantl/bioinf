@@ -144,9 +144,9 @@ d1 = matUdalj[0][1]
 d2 = matUdalj[0][2]
 d3 = matUdalj[1][2]
 
-w1 = (d1+d2-d3) / 2
-w2 = (d1+d3-d2) / 2
-w3 = (d3+d2-d1) / 2 
+w1 = float(d1+d2-d3) * 0.5
+w2 = float(d1+d3-d2) * 0.5
+w3 = float(d3+d2-d1) * 0.5
 
 spremiste[2*r-velQ, indeksiKojiSuOstali[0]] = w1
 spremiste[2*r-velQ, indeksiKojiSuOstali[1]] = w2
