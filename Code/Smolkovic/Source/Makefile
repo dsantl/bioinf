@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -o3
+CFLAGS = -Wall -O3
 
 INCS = -I ./
 SRCS = dm.cc nj.cc pt.cc

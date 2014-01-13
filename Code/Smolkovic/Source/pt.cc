@@ -109,7 +109,7 @@ void pTree::updateNodes(vector<double>& duk) {
 	params: id new node, distance matrix
 */
 void pTree::addLastNode(int u, DistanceMat* mat) {	
-	int c, d;
+	int c = 0, d = 0;
 	if(u == 0) { c = 1; d = 2; }
 	else if(u == 1 ) { c = 0; d = 2;}
 	else { u = 0; d = 1;}

@@ -22,20 +22,21 @@ using namespace std;
 int main(int argc, char const **argv)
 {
 	try {
-		int N, a, b; double d;
-		fscanf(stdin, "%d", &N); // number of taxons
+		int N, a, b,ret; double d;
+		ret = fscanf(stdin, "%d", &N); // number of taxons
 
 		DistanceMat *dMat = new DistanceMat(N);
 
 		//  read N(N-1)/2 distances between taxons
 		for(int i = 0; i < N *(N-1)/2; ++i) {
-			fscanf(stdin, "%d %d %lf", &a, &b, &d);
+			ret = fscanf(stdin, "%d %d %lf", &a, &b, &d);
 			
 			if( a >= N || b >= N)
 				throw string("Index out of range!!");
-
-			dMat->insert(a, b, d);
-			dMat->insert(b, a, d);
+			if (ret > 0) {
+				dMat->insert(a, b, d);
+				dMat->insert(b, a, d);
+			}
 		}
 
 	
