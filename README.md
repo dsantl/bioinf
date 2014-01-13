@@ -13,16 +13,6 @@ Main script is nj_process.
 ./nj_process exec_of_nj input_fasta_file
 ```
 
-### Other
-
-```sh
-./alignament.py input_fasta_file - to stdout print distance matrix (bridges)
-```
-
-```sh
-./generate_graph.py - to stdin graph in bridge format
-```
-
 ### Code
 
 Source codes and bin files.
@@ -64,4 +54,14 @@ cd Infra
 ###### C++
 ```sh
 ./nj_process ../Code/Smolkovic/Bin/LAB test1.fasta 
+```
+
+### Other
+
+```sh
+./alignament.py input_fasta_file # to stdout print distance matrix (bridges)
+```
+
+```sh
+./generate_graph.py # to stdin graph in bridge format
 ```
