@@ -45,7 +45,7 @@
 \nocite{saitou}\nocite{phylpro}\nocite{wiki}\nocite{mbt}
 
 % TODO: Navedite naslov rada.
-\title{Algoritam "Neighbour joining"}
+\title{Algoritam "Neighbor joining"}
 
 % TODO: Navedite vaše ime i prezime.
 \author{\itshape{Filip Beć}\\
@@ -65,9 +65,9 @@
 
 \chapter{Opis algoritma}
 
-Algoritam \emph{Neighbour joining} služi za izgradnju filogenetskog stabla. Ulaz algoritma su evolucijske udaljenosti (matrica udaljenosti čvorova). Izlaz algoritma je stablo s težinskim bridovima. Cilj algoritma je izgraditi minimalno razapinjuće filogenetsko stablo. Algoritam nužno ne pronalazi takvo stablo, ali rješenja su često minimalna razapinjuća filogenetska stabla ili blizu toga \cite{saitou}. Glavni razlog je smanjenje vremenske složenosti jer u praksi nije izvedivo ispitivanje svih mogućih stabala. Stablo se gradi od dna prema vrhu. Algoritam je pohlepan jer za jednom sparene čvorove ne ispituje točnost tog koraka.
+Algoritam \emph{Neighbor joining} služi za izgradnju filogenetskog stabla. Ulaz algoritma su evolucijske udaljenosti (matrica udaljenosti čvorova). Izlaz algoritma je stablo s težinskim bridovima. Cilj algoritma je izgraditi minimalno razapinjajuće filogenetsko stablo. Algoritam nužno ne pronalazi takvo stablo, ali rješenja su često minimalna razapinjajuća filogenetska stabla ili blizu toga \cite{saitou}. Glavni razlog je smanjenje vremenske složenosti jer u praksi nije izvedivo ispitivanje svih mogućih stabala. Stablo se gradi od dna prema vrhu. Algoritam je pohlepan jer za jednom sparene čvorove ne ispituje točnost tog koraka.
 
-Algoritam se sastoji od dva dijela: uparivanje čvorova i završni korak. Algoritam kreće od matrice udaljenosti nad kojom zaključuje koja dva čvora je potrebno upariti. Kada su poznata dva čvora koja se trebaju upariti, stvara se novi čvor koji se spaja s dva odabrana. Dva odabrana čvora brišu se iz matrice udaljenosti, a novi čvor se dodaje u matricu udaljenosti. Taj postupak se izvršava $N-3$ puta, gdje je $N$ početni broj čvorova. Završni korak uzima zadnja tri čvora koja su ostala u matrici udaljenosti, stvara novi čvor i spaja novi čvor s tri zadnja čvora u matrici udaljenosti. Formalno algoritam izgleda ovako:
+Algoritam se sastoji od dva dijela: uparivanje čvorova i završni korak. Algoritam kreće od matrice udaljenosti nad kojom zaključuje koja dva čvora je potrebno upariti. Kada su poznata dva čvora koja se trebaju upariti, stvara se novi čvor koji se spaja s dva odabrana. Dva odabrana čvora se brišu iz matrice udaljenosti, a novi čvor se doda u matricu udaljenosti. Taj postupak se izvršava $N-3$ puta, gdje je $N$ početni broj čvorova. Završni korak uzima zadnja tri čvora koja su ostala u matrici udaljenosti, stvara novi čvor i spaja novi čvor s tri zadnja čvora u matrici udaljenosti. Formalno algoritam izgleda ovako:
 \begin{enumerate}
 	\item \textbf{Ulaz}: matrica udaljenosti
 	\item Na temelju trenutne matrice udaljenosti izračunaj matricu \textbf{Q}
@@ -79,7 +79,7 @@ Algoritam se sastoji od dva dijela: uparivanje čvorova i završni korak. Algori
 \end{enumerate}
 
 \section{Matrica Q}
-Matrica \textbf{Q} pomoćna je matrica iz koje se određuje par čvorova koji će biti susjedni. Matrica \textbf{Q} kao kriterij uzima, osim udaljenosti čvorova $i$ i $j$, i utjecaj njihovih susjeda. Dokaz da najmanja vrijednost matrice \textbf{Q} pripada susjednim čvorovima dan je u \cite{saitou}. Matrica \textbf{Q} izračunava se na sljedeći način:
+Matrica \textbf{Q} pomoćna je matrica iz koje se određuje par čvorova koji će biti susjedni. Matrica \textbf{Q} kao kriterij uzima osim udaljenosti čvorova $i$ i $j$ utjecaj njihovih susjeda. Dokaz da najmanja vrijednost matrice \textbf{Q} pripada susjednim čvorovima dan je u \cite{saitou}. Matrica \textbf{Q} izračunava se na sljedeći način:
 
 \begin{equation}
 	Q(i,j) = (r-2) d(i,j) - \sum_{k=1}^{r}d(i,k) - \sum_{k=1}^{r}d(j,k)
@@ -88,9 +88,9 @@ Matrica \textbf{Q} pomoćna je matrica iz koje se određuje par čvorova koji ć
 
 \section{Računanje vrijednosti bridova}
 
-Nakon što se stvore novi bridovi u stablu, potrebno je odrediti njihovu vrijednost. U svakom koraku uparivanja stvore se dva nova brida. U završnom koraku stvore se tri nova brida.
+Nakon što se stvore novi bridovi u stablu potrebno je odrediti njihovu vrijednost. U svakom koraku uparivanja stvore se dva nova brida. U završnom koraku stvore se tri nova brida.
 
-Nakon što se čvorovi $i$ i $j$ proglase susjednima, stvara se novi čvor $w$. Potrebno je odrediti udaljenosti $d(i, w)$ i $d(j,w)$. Udaljenosti se određuju prema formulama:
+Nakon što se čvorovi $i$ i $j$ proglase susjednima stvara se novi čvor $w$. Potrebno je odrediti udaljenosti $d(i, w)$ i $d(j,w)$. Udaljenosti se određuju prema formulama:
 
 \begin{equation}
 d(i,w) = \frac{1}{2}d(i,j)+\frac{1}{2(r-2)} \left [ \sum_{k=1}^{r}d(i,k) - \sum_{k=1}^{r}d(j,k) \right ]
@@ -117,7 +117,7 @@ Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova 
 
 \chapter{Primjer izvođenja}
 
-Raspolažemo skupom od $5$ taksona $(\textup{Dog},\textup{Cat},\textup{Rabbit},\textup{Duck},\textup{Swan})$ te pridanim udaljenostima među njima definiranim matricom udaljenosti:
+Raspolažemo skupom od $5$ taksona $(\textup{Dog},\textup{Cat},\textup{Rabbit},\textup{Monkey},\textup{Cow})$ te pridanim udaljenostima među njima definiranim matricom udaljenosti:
 \begin{table}[h]
 	\centering
     \begin{tabular}{|l|l|l|l|l|l|}
@@ -237,7 +237,7 @@ Potrebno je još spojiti preostala $3$ čvora. U svrhu spajanja stvaramo novi č
 
 \chapter{Testiranje i usporedbe}
 \section{Korišteni jezici}
-Algoritam je implementiran u šest različitih jezika i to prema podjeli:
+Algoritam je implementiran u šest različitih jezika i to prema podijeli:
 \begin{itemize}
 	\item Filip Beć - \textbf{Objective-C}
 	\item Zorana Ćurković - \textbf{Python}
@@ -248,37 +248,27 @@ Algoritam je implementiran u šest različitih jezika i to prema podjeli:
 \end{itemize}
 
 \section{Infrastruktura}
-Algoritam kao ulaz uzima matricu udaljenosti. U praksi se algoritam \emph{Neighbuor joining} koristi u kombinaciji s algoritmima poravnanja. Nakon što se genetski nizovi poravnaju računa se udaljenost između njih te je taj rezultat ulaz za algoritam \emph{Neighbour joining}. Kako ne bi svaka implementacija (jezik) posebno računala poravnanja, napravljena je infrastruktura koja sama napravi poravnanja te preda udaljenosti kao ulaz u različite implementacije. Osim pripreme ulaza, infrastruktura se pobrine za crtanje dobivenog grafa, kako bi se lakše vidjelo rješenje. Infrastruktura se nalazi u mapi \emph{"Infra/"} u repozitoriju.
+Algoritam kao ulaz uzima matricu udaljenosti. U praksi se algoritam \emph{Neighbor joining} koristi u kombinaciji s algoritmima poravnanja. Nakon što se genetski nizovi poravnaju računa se udaljenost između njih te je taj rezultat ulaz za algoritam \emph{Neighbor joining}. Kako ne bi svaka implementacija (jezik) posebno računao poravnanja napravljena je infrastruktura koja sama napravi poravnanja te samo udaljenosti preda kao ulaz u različite implementacije. Osim pripreme ulaza, infrastruktura se pobrine za crtanje dobivenog grafa, jer je čisti tekstualni zapis grafa beskoristan za ljudsku interpretaciju. Infrastruktura se nalazi u mapi \emph{"Infra/"} u repozitoriju.
 
 \subsection{Priprema ulaza - poravnanja}
 
-Za pripremu ulaza koristi se skripta \emph{alignament.py} napisana u \emph{Pythonu}. Koristi se biblioteka \emph{BioPython} gdje se nalazi programska podrška za \emph{Muscle}. \emph{Muscle} omogućava višestruko poravnanje genetskih nizova. Kao ulaz daje se datoteka u \emph{FASTA} formatu. Izlaz je skup genetskih nizova iste duljine.
+Za pripremu ulaza koristi se skripta \emph{alignament.py} napisana u \emph{Python}-u. Koristi se biblioteka \emph{BioPython} gdje se nalazi programska podrška za \emph{Muscle}. \emph{Muscle} omogućava višestruko poravnanje genetskih nizova. Kao ulaz daje se datoteka u \emph{FASTA} formatu. Izlaz je skup genetskih nizova iste duljine.
  
 Nakon koraka poravnanja potrebno je izračunati udaljenosti među dobivenim nizovima. Udaljenost se računa kao postotak poklapanja pripadajućih znakova u nizu gdje se zanemaruju procijepi. Na kraju se iz dobivenih postotaka računa udaljenost po Jukes-Cantorovom modelu.
 
-Na temelju indeksa genetskog niza i udaljenosti između nizova stvara se ulaz u algoritam  \emph{Neighbour joining} tako da se u prvi red zapiše broj genetskih nizova, a nakon toga u $\frac{N(N-1)}{2}$ redova se zapisuju udaljenosti između nizova kao: "$i$ $j$ distance", gdje je uvijek $i<j$, a $i$ i $j$ su pripadajući identifikatori nizova.
+Na temelju indeksa genetskog niza i udaljenosti između nizova stvara se ulaz u algoritam  \emph{Neighbor joining} tako da se u prvi red zapiše broj genetskih nizova, a nakon toga u $\frac{N(N-1)}{2}$ redova se zapisuju udaljenosti između nizova kao: "$i$ $j$ distance", gdje je uvijek $i<j$, a $i$ i $j$ su pripadajući identifikatori nizova.
 
 \subsection{Crtanje grafa}
 
-Kako bi se rezultati algoritma mogli vizualizirati, generira se datoteka u \emph{DOT} jeziku koji služi za opisivanje grafova. Tako napisan program (opis grafa) može se prevesti u neki od slikovnih formata (npr. png).
+Kako bi se mogli vizualizirati rezultati algoritma generira se datoteka u \emph{DOT} jeziku koji služi za opisivje grafova. Tako napisan program (opis grafa) može se prevesti u neki od slikovnih formata (npr. png).
 
-Implementacije algoritma \emph{Neighbour joining} kao izlaz daju skup bridova u obliku "$i$ $j$ distance", gdje su $i$ i $j$ čvorovi u stvorenom stablu, a \emph{distance} udaljenost između njih. Skripta \emph{generate\_graph.py} na temelju takvog izlaza (skupa bridova) generira opis grafa u \emph{DOT} jeziku.
+Implementacije algoritma \emph{Neighbor joining} kao izlaz daju skup bridova u obliku "$i$ $j$ distance", gdje su $i$ i $j$ čvorovi u stvorenom stablu, a \emph{distance} udaljenost između njih. Skripta \emph{generate\_graph.py} generira na temelju takvog izlaza (skupa bridova) opis grafa u \emph{DOT} jeziku.
 
 \subsection{Pokretanje primjera}
 
-Skripta napisana u \emph{bash} jeziku, \emph{nj\_process}, spaja tri komponente infrastrukture:
-\begin{itemize}
-\item poravnanje nizova
-\item implementaciju  \emph{Neighbour joining} algoritma
-\item vizualizaciju dobivenog grafa.
-\end{itemize}
-Skripta se koristi na sljedeći način:
-
-\emph{./nj\_process program fasta\_datoteka}.\\ 
-Za određenu implementaciju u repozitoriju potrebno je pokrenuti npr:
-
-\emph{./nj\_process ../Code/Santl/Bin/neighbour\_joining test1.fasta}\\
-Za druge implementacije dane su naredbe u \emph{README.md} u repozitoriju. Kao rezultat izvođenja infrastrukture dobiva se sličan prikaz kao na slici \ref{ref:infra}.
+Skripta napisana u \emph{bash} jeziku, \emph{nj\_process} spaja tri komponente infrastrukture - poravnanje nizova, implementaciju  \emph{Neighbor joining} algoritma i vizualizaciju dobivenog grafa. Skripta se koristi na sljedeći način: "\emph{./nj\_process program fasta\_datoteka}". 
+Za određenu implementaciju u repozitoriju potrebno je pokrenuti npr.:\\ "\emph{./nj\_process ../Code/Santl/Bin/neighbour\_joining test1.fasta}".
+Za druge implementacije dane su naredbe u \emph{README.md} u repozitoriju. Kao rezultat izvođenja infrastrukture dobija se sličan prikaz kao na slici \ref{ref:infra}.
 
 \begin{figure}[htb]
 \centering
@@ -292,7 +282,7 @@ Za druge implementacije dane su naredbe u \emph{README.md} u repozitoriju. Kao r
 
 Za testiranje implementacija napisane su skripte koje omogućavaju automatizirano ispitivanje i vizualizaciju rezultata. Ispitna struktura se nalazi u repozitoriju u mapi \emph{"Test/"}.
 
-Testiranje obuhvaća tri cjeline: točnost, vrijeme izvođenja i korištena memorija. Komponentu točnosti nije se mogla utvrditi do kraja. Algoritam \emph{Neighbour joining} u svojoj definiciji ima nedeterminističko svojstvo. U algoritmu nije definirano što se događa ako se u matrici \textbf{Q} pojave parovi čvorova koji imaju istu vrijednost. U tom slučaju može se uzeti bilo koji od njih i zato, u ovisnosti o implementaciji, izlazi algoritma mogu davati različita stabla. Zbog toga su se kao testni primjeri uzele matrice udaljenosti koje daju jedinstvena stabla. Za to je korištena skripta u mapi \emph{"Test/"} pod nazivom \emph{check\_isomorphism.py} koja provjerava izomorfnost dvaju težinskih grafova.
+Testiranje obuhvaća tri cjeline: točnost, vrijeme izvođenja i korištena memorija. Komponentu točnosti nije se mogla utvrditi do kraja. Algoritam \emph{Neighbor joining} u svojoj definiciji ima nedeterminističko svojstvo. U algortmu nije definirano što se događa ako se u matrici \textbf{Q} pojave parovi čvorova koji imaju istu vrijednost. U tom slučaju može se uzeti bilo koji od njih i zato u ovisnosti o implementaciji izlazi algoritma mogu davati različita stabla. Zato su se kao testni primjeri uzele matrice udaljenosti koje daju jedinstvena stabla. Za to je korištena skripta u mapi \emph{"Test/"} pod nazivom \emph{check\_isomorphism.py} koja provjerava izomorfnost dvaju težinskih grafova.
 
 Za ispitivanje vremena izvođenja i korištene memorije generirani su test primjeri različitih veličina (broja čvorova). Ispod se nalaze grafovi koji prikazuju mjerene veličine.
 
@@ -349,15 +339,15 @@ Mjerena je maksimalna količina memorije u nekom trentku za vrijeme izvođenja p
 \end{figure}
 
 \section{Rezultati}
-Algoritam se može implementirati u apriornoj vremenskoj složenosti $O(N^3)$, gdje je $N$ broj čvorova. Mjerenja su pokazala da implementacija algoritma ovisi o jeziku u kojem je algoritam ostvaren. Tako generalno možemo reći da niži programski jezici daju bolje rezultate, dok skriptni jezici očekivano daju nešto lošija vremena izvođenja.
+Algoritam se može implementirati u apriornoj vremenskoj složenosti $O(N^3)$, gdje je $N$ broj čvorova. Mjerenja su pokazala da implementacija algoritma ovisi o jeziku u kojem je algoritam ostvaren. Tako generalno možemo reći da niži programski jezici daju bolje rezultate, dok skriptni jezici očekivano daju nešto lošja vremena izvođenja.
 
-Graf vremena izvođenja do sto čvorova (slika \ref{fig:time_100}) pokazuju da viši programski jezik \emph{Java} i skriptni jezici \emph{Ruby} i \emph{Python} imaju puno veća vremena izvođenja od ostalih jezika, što je i očekivano. Zanimljiv je graf na slici \ref{fig:time_50_300} gdje se vidi da za malo veći broj čvorova programski jezik \emph{Java} ima puno manje vrijeme izvođenja od skriptnih jezika. Za nešto veći broj čvorova, do njih 1000 (slika \ref{fig:time_150_1000}), pokazuje se da se \emph{Java} može mjeriti s ostalim jezicima. Najbolje vrijeme izvođenja imala je implementacija u \emph{C++} programskom jeziku, što je i očekivano jer je \emph{C++} dovoljno nizak jezik, a opet koristi bibliotetke struktura koje su optimizirane. Jezici \emph{Objective-C} i \emph{C} pokazuju gotovo identične rezultate.
+Graf vremena izvođenja do sto čvorova (slika \ref{fig:time_100}) pokazuju da viši programski jezik \emph{Java} i skriptni jezici \emph{Ruby} i \emph{Python} imaju puno veća vremena izvođenja od ostalih jezika, što je i očekivano. Zanimljiv je graf na slici \ref{fig:time_50_300} gdje se vidi da za malo veći broj čvorova programski jezik \emph{Java} ima puno manje vrijeme izvođenja od skiptnih jezika. Za nešto veći broj čvorova, do njih 1000 (slika \ref{fig:time_150_1000}), pokazuje se da se \emph{Java} može mjeriti s ostalim jezicima. Najbolje vrijeme izvođenja imala je implementacija u \emph{C++} programskom jeziku, što je i očekivano jer je \emph{C++} dovoljno nizak jezik, a opet koristi bibliotetke struktura koje su optimizirane. Jezici \emph{Objective-C} i \emph{C} pokazuju gotovo identične rezultate.
 
-Rezultati ispitivanja korištene memorije jednako tako su očekivani. \emph{Java} programski jezik troši najviše memorije zbog popratnih troškova virtualnog stroja. Skriptni jezici troše nešto više memorije ali ne znatno od ostalih jezika. Implementacija u jeziku \emph{C} troši nešto više memorije zbog toga što je napravljen \emph{trade-off} između čitkosti koda i efikasnosti. Jezici \emph{C++} i \emph{Objective-C} daju najbolje rezultate jer su korištene efikasne strukture, odnosno, \emph{Objective-C} prilagođen je za mobilne uređaje koji ne bi trebali trošiti puno memorije.
+Rezultati ispitivanja korištene memorije jednako tako su očekivani. \emph{Java} programski jezik troši najviše memorije zbog popratnih troškova virtualnog stroja. Skriptni jezici troše nešto više memorije ali ne znatno od ostalih jezika. Implementacija u jeziku \emph{C} troši nešto više memorije zbog toga jer je napravljen \emph{trade-off} između čitkosti koda i efikasnosti. Jezici \emph{C++} i \emph{Objective-C} daju najbolje rezultate jer su korištene efikasne strukture odnosno \emph{Objective-C} prilagođen je za mobilne uređaje koji ne bi trebali trošiti puno memorije.
 
 \chapter{Zaključak}
 
-Ishod projekta pokazao je kako određeni programski jezici utječu na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manjeg broja linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se, primjerice, izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje s različitim parametrima. \emph{Objective-C} je poseban slučaj. Pokazalo se da se može koristiti u implementaciji algoritama, samo što nije namijenjen znanstvenicima koji se primarno bave biologijom.
+Ishod projekta pokazao je kako određeni programski jezici utjeću na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manji broj linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se primjerice izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje s različitim parametrima. \emph{Objective-C} je poseban slučaj. Pokazalo se da se može koristiti u implementaciji algoritama, samo što nije namijenjen znanstvenicima koji se primarno bave biologijom.
 
 \bibliography{literatura}
 %\bibliographystyle{fer} %promijena za citiranje po redu ieeetr
