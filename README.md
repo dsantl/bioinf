@@ -1,19 +1,69 @@
 bioinf
 ======
 
-Neighbor joining project
+## Neighbour joining project
 
-Infra:
+### Infra
 
 Main script is nj_process.
 
-Usage: ./nj_process exec_of_nj input_fasta_file
+### Usage
 
-Other:
+```sh
+./nj_process exec_of_nj input_fasta_file
+```
 
-./alignament.py input_fasta_file - to stdout print distance matrix (bridges)
-./generate_graph.py - to stdin graph in bridge format
+### Code
 
+Source codes and bin files.
 
-Code: source codes and bin files
-Test: Infrastructure for test
+### Test
+
+Infrastructure for test.
+
+### Example
+
+```sh
+cd Infra
+```
+
+###### Objective C:
+```sh
+./nj_process ../Code/Bec/Bin/neighbor_joining test1.fasta
+```
+###### Python:
+```sh
+./nj_process ../Code/Curkovic/Bin/nj.py test1.fasta
+```
+
+###### Java:
+```sh
+./nj_process ../Code/Gasic/Bin/neighbour_joining test1.fasta 
+```
+
+###### Ruby:
+```sh
+./nj_process ../Code/Kokot/Bin/neighbour_joining.rb test1.fasta 
+```
+
+###### C:
+```sh
+./nj_process ../Code/Santl/Bin/neighbour_joining test1.fasta 
+```
+
+###### C++
+```sh
+./nj_process ../Code/Smolkovic/Bin/LAB test1.fasta 
+```
+
+Resulting trees may slightly differ one from the other for the same input data because the algorithm is nondeterministic. Check the Documentation (chapter Testiranje) for the details. 
+
+### Other
+
+```sh
+./alignament.py input_fasta_file # to stdout print distance matrix (bridges)
+```
+
+```sh
+./generate_graph.py # to stdin graph in bridge format
+```

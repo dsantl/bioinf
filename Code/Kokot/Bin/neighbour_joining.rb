@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# NEIGHBOR JOINING ALGORITHM
+# NEIGHBOUR JOINING ALGORITHM
 
 # parses input file or stdin
 # checks if the node number is valid
