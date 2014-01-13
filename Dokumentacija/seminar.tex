@@ -117,7 +117,7 @@ Algoritam mora izvršiti korak uparivanja $N-3$ puta, gdje je $N$ broj čvorova 
 
 \chapter{Primjer izvođenja}
 
-Raspolažemo skupom od $5$ taksona $(\textup{Dog},\textup{Cat},\textup{Rabbit},\textup{Duck},\textup{Swan})$ te pridanim udaljenostima među njima definiranim matricom udaljenosti:
+Raspolažemo skupom od $5$ taksona\footnote{Koristimo oba izraza ovisno o kontekstu - takson i čvor} $(\textup{Dog},\textup{Cat},\textup{Rabbit},\textup{Duck},\textup{Swan})$ te pridanim udaljenostima među njima definiranim matricom udaljenosti:
 \begin{table}[h]
 	\centering
     \begin{tabular}{|l|l|l|l|l|l|}
@@ -136,7 +136,7 @@ Algoritam će biti proveden u $N-3=2$ koraka. \newline
 \begin{figure}[htb]
 \centering
 \includegraphics[scale=0.6]{./img/pocetni.png}
-\caption{Početno stablo}
+\caption{Početni graf - moguće su sve veze}
 \end{figure}
 
 \newpage
@@ -156,13 +156,13 @@ Izračunamo matricu $Q$ te tražimo par $(i,j)$ koji ima najmanju vrijednost:
     \end{tabular}
 \end{table}
 
-$i = \textup{Duck}, j = \textup{Swan}, Q_{min} = -85$. Taksone Duck i Swan spajamo u novi čvor $\textup{node1}$ te računamo udaljenosti: 
+$i = \textup{Duck}, j = \textup{Swan}, Q_{min} = -85$. Taksone \textbf{Duck} i \textbf{Swan} spajamo u novi čvor $\textup{node1}$ te računamo udaljenosti: 
 
 \indent $d(\textup{Duck},\textup{node1}) = 7.833$, \newline
 \indent $d(\textup{Swan},\textup{node1}) = 4.166$
 
 
-Preostale udaljenosti $d(k,\textup{node1})$ definirane su novom matricom udaljenosti :
+Preostale udaljenosti $d(\textup{k},\textup{node1})$ definirane su novom matricom udaljenosti :
 
 \begin{table}[h]
 	\centering
@@ -198,7 +198,7 @@ Izračunamo matricu $Q$ te tražimo par $(i,j)$ koji ima najmanju vrijednost:
     \end{tabular}
 \end{table}
 
-$i = \textup{Dog}, j = \textup{Cat}, Q_{min} = -44.5$. Taksone Dog i Cat spajamo u novi čvor $\textup{node2}$ te računamo udaljenosti: 
+$i = \textup{Dog}, j = \textup{Cat}, Q_{min} = -44.5$. Taksone \textbf{Dog} i \textbf{Cat} spajamo u novi čvor $\textup{node2}$ te računamo udaljenosti: 
 
 \indent $d(\textup{Dog},\textup{node2}) = 3.875$, \newline
 \indent $d(\textup{Cat},\textup{node2}) = 1.125$ \newline
@@ -219,13 +219,13 @@ Preostale udaljenosti $d(k,\textup{node2})$ definirane su novom matricom udaljen
 
 Potrebno je još spojiti preostala $3$ čvora. U svrhu spajanja stvaramo novi čvor node3. Poznate su nam udaljenosti $d(\textup{node2},\textup{Rabbit})$, $d(\textup{node2}, \textup{node1})$ i  $d(\textup{Rabbit},\textup{node1})$. Temeljem tih udaljenosti možemo izračunati posljednja tri luka. \newline
 
-\indent $d(\textup{node3}, \textup{node2}) = 0.5 * (d(\textup{node2}, \textup{node1}) + d(\textup{node2}, \textup{Rabbit}) - d(\textup{node1}, \textup{Rabbit})) $ \newline
+\indent $d(\textup{node3}, \textup{node2}) = 0.5 \cdot (d(\textup{node2}, \textup{node1}) + d(\textup{node2}, \textup{Rabbit}) - d(\textup{node1}, \textup{Rabbit})) $ \newline
 \indent $= 2.625$ \newline
 
-\indent $d(\textup{node3},\textup{ node1}) = 0.5 * (d(\textup{node1}, \textup{Rabbit}) + d(\textup{node2}, \textup{Rabbit}) - d(\textup{node1}, \textup{node2})) $ \newline
+\indent $d(\textup{node3},\textup{ node1}) = 0.5 \cdot (d(\textup{node1}, \textup{Rabbit}) + d(\textup{node2}, \textup{Rabbit}) - d(\textup{node1}, \textup{node2})) $ \newline
 \indent $=4.125 $ \newline
 
-\indent $d(\textup{node3},\textup{Rabbit}) = 0.5 * (d(\textup{node1}, \textup{Rabbit}) + d(\textup{node1}, \textup{node2}) - d(\textup{node2}, \textup{Rabbit})) $ \newline
+\indent $d(\textup{node3},\textup{Rabbit}) = 0.5 \cdot (d(\textup{node1}, \textup{Rabbit}) + d(\textup{node1}, \textup{node2}) - d(\textup{node2}, \textup{Rabbit})) $ \newline
 \indent = 7.875 \newline
 
 
@@ -325,7 +325,7 @@ Vrijeme izvođenja algoritma testirano je nad brojem čvorova $N$=3, 5, 10, 50, 
 
 \subsection{Korištena memorija}
 
-Mjerena je maksimalna količina memorije u nekom trentku za vrijeme izvođenja procesa. Jednako kao i za vrijeme, implementacije su ispitane nad brojem čvorova $N$=3, 5, 10, 50, 100, 150, 300, 500, 1000. U nastavku se nalaze različiti grafovi koji prikazuju različite intervala za broj čvorova. 
+Mjerena je maksimalna količina memorije u nekom trentku za vrijeme izvođenja procesa. Jednako kao i za vrijeme, implementacije su ispitane nad brojem čvorova $N$=3, 5, 10, 50, 100, 150, 300, 500, 1000. U nastavku se nalaze različiti grafovi koji prikazuju različite intervala za broj čvorova.  
 
 \begin{figure}[!h]
 \centering
@@ -351,13 +351,13 @@ Mjerena je maksimalna količina memorije u nekom trentku za vrijeme izvođenja p
 \section{Rezultati}
 Algoritam se može implementirati u apriornoj vremenskoj složenosti $O(N^3)$, gdje je $N$ broj čvorova. Mjerenja su pokazala da implementacija algoritma ovisi o jeziku u kojem je algoritam ostvaren. Tako generalno možemo reći da niži programski jezici daju bolje rezultate, dok skriptni jezici očekivano daju nešto lošija vremena izvođenja.
 
-Graf vremena izvođenja do sto čvorova (slika \ref{fig:time_100}) pokazuju da viši programski jezik \emph{Java} i skriptni jezici \emph{Ruby} i \emph{Python} imaju puno veća vremena izvođenja od ostalih jezika, što je i očekivano. Zanimljiv je graf na slici \ref{fig:time_50_300} gdje se vidi da za malo veći broj čvorova programski jezik \emph{Java} ima puno manje vrijeme izvođenja od skriptnih jezika. Za nešto veći broj čvorova, do njih 1000 (slika \ref{fig:time_150_1000}), pokazuje se da se \emph{Java} može mjeriti s ostalim jezicima. Najbolje vrijeme izvođenja imala je implementacija u \emph{C++} programskom jeziku, što je i očekivano jer je \emph{C++} dovoljno nizak jezik, a opet koristi bibliotetke struktura koje su optimizirane. Jezici \emph{Objective-C} i \emph{C} pokazuju gotovo identične rezultate.
+Graf vremena izvođenja do sto čvorova (slika \ref{fig:time_100}) pokazuju da viši programski jezik \emph{Java} i skriptni jezici \emph{Ruby} i \emph{Python} imaju puno veća vremena izvođenja od ostalih jezika, što je i očekivano. Zanimljiv je graf na slici \ref{fig:time_50_300} gdje se vidi da za malo veći broj čvorova programski jezik \emph{Java} ima puno manje vrijeme izvođenja od skriptnih jezika. Za nešto veći broj čvorova, do njih 1000 (slika \ref{fig:time_150_1000}), pokazuje se da se \emph{Java} može mjeriti s ostalim jezicima. Najbolje vrijeme izvođenja imala je implementacija u \emph{C++} programskom jeziku, što je i očekivano jer je \emph{C++} dovoljno nizak jezik, a opet koristi biblioteke struktura koje su optimizirane. Jezici \emph{Objective-C} i \emph{C} pokazuju gotovo identične rezultate.
 
 Rezultati ispitivanja korištene memorije jednako tako su očekivani. \emph{Java} programski jezik troši najviše memorije zbog popratnih troškova virtualnog stroja. Skriptni jezici troše nešto više memorije ali ne znatno od ostalih jezika. Implementacija u jeziku \emph{C} troši nešto više memorije zbog toga što je napravljen \emph{trade-off} između čitkosti koda i efikasnosti. Jezici \emph{C++} i \emph{Objective-C} daju najbolje rezultate jer su korištene efikasne strukture, odnosno, \emph{Objective-C} prilagođen je za mobilne uređaje koji ne bi trebali trošiti puno memorije.
 
 \chapter{Zaključak}
 
-Ishod projekta pokazao je kako određeni programski jezici utječu na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manjeg broja linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se, primjerice, izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje s različitim parametrima. \emph{Objective-C} je poseban slučaj. Pokazalo se da se može koristiti u implementaciji algoritama, samo što nije namijenjen znanstvenicima koji se primarno bave biologijom.
+Ishod projekta pokazao je kako određeni programski jezici utječu na implementaciju algoritama, konkretno na algoritam koji se koristi u bioinformatici. Pokazalo se da niski programski jezici poput \emph{C} jezika mogu dati dobre rezultate, ali implementacija algoritma je kompleksnija. \emph{C++} jezik dobar je izbor. Iako na nižoj razini, omogućuje pisanje manjeg broja linija i korištenje gotovih struktura podataka koje provjereno dobro rade. \emph{Java} je također dobar izbor jer se pokazalo da vrijeme izvođenja na većim test primjerima nije lošije od ostalih jezika, a dovoljno je na visokom nivou da se, primjerice, izbjegava ručno upravljanje memorijom. Skriptni jezici nisu dobar izbor za krajnji produkt, ali dobar su izbor za implementaciju prototipa algoritma. Razvoj algoritma u skriptnim jezicima je brz što omogućava efikasno eksperimentiranje. Pokazalo se da se može koristiti u implementaciji algoritama, ali uz uvjet da se većim dijelom koristi samo podskup jezika koji je identičan jeziku C. Kada smo koristili objekte kao prikaz podataka rezultati su bili lošiji. \emph{Objective-C} zbog svoje sintakse teško je čitljiv korisnicima koji se primarno ne bave njime.
 
 \bibliography{literatura}
 %\bibliographystyle{fer} %promijena za citiranje po redu ieeetr
