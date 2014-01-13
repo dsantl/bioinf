@@ -56,6 +56,8 @@ cd Infra
 ./nj_process ../Code/Smolkovic/Bin/LAB test1.fasta 
 ```
 
+Resulting trees may slightly differ one from the other for the same input data because the algorithm is nondeterministic. Check the Documentation (chapter Testiranje) for the details. 
+
 ### Other
 
 ```sh
