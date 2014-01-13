@@ -9,23 +9,23 @@ start_time = time.time()
 
 spremiste = defaultdict(dict)
 
-fname = str(sys.argv[1])
+#fname = str(sys.argv[1])
 
-with open(fname, 'r') as f:
-	matUdalj = []
-	for line in f:
-		line = line.split()
-		if line:
-			if len(line) == 1:
-				# prva linija, broj cvorova, inicijilaziraj matricu
-				# nulama
-				r = int(line[0]);
-				
-				matUdalj = [[0]*r for i in range(r)] 
-			else:
-				# linije s udaljenostima
-				matUdalj[int(line[0])][int(line[1])] = float(line[2])
-				matUdalj[int(line[1])][int(line[0])] = float(line[2])	
+f = sys.stdin
+matUdalj = []
+for line in f:
+	line = line.split()
+	if line:
+		if len(line) == 1:
+			# prva linija, broj cvorova, inicijilaziraj matricu
+			# nulama
+			r = int(line[0]);
+			
+			matUdalj = [[0]*r for i in range(r)] 
+		else:
+			# linije s udaljenostima
+			matUdalj[int(line[0])][int(line[1])] = float(line[2])
+			matUdalj[int(line[1])][int(line[0])] = float(line[2])	
 		
 	
 
