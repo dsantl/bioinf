@@ -84,11 +84,12 @@
 	\pause
 	\item U matrici Q pronalazi se minimalna vrijednost između dva čvora
 	\pause
-	\item Pronađena dva čvora spajaju se s novim čvorem
+	\item Pronađena dva čvora spajaju se s novim čvorom
 	\pause
-	\item Iz matrice udaljenosti se brišu odabrana dva čvora i dodaje se novi čvor
+	\item Iz matrice udaljenosti brišu se dva odabrana čvora i dodaje se
+novi čvor
 	\pause
-	\item Ako matrica udaljenosti sadrži više od tri čvora skoči na 2. korak
+	\item Ako matrica udaljenosti sadrži više od tri čvora, skoči na 2. korak
 	\pause
 	\item Završni korak spajanja zadnja tri čvora s novim čvorom
 \end{enumerate}
@@ -133,7 +134,7 @@ $$ Q(i,j) = (N-2) d(i,j) - \sum_{k=1}^{N}d(i,k) - \sum_{k=1}^{N}d(j,k) $$
 \begin{itemize}
 	\item Izgrađena infrastruktura
 	\item Računanje udaljenosti iz FASTA datoteke i povezivanje s implementacijama
-	\item Lakše testiranje
+	\item Lakše testiranje - izlaz je vizualni prikaz stabla
 	\item Točnost - skripta koja uspoređuje dva grafa
 	\item NJ nije deterministički!
 \end{itemize}
